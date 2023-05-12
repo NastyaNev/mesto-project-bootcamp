@@ -6,7 +6,6 @@
 
 @media (max-width: 767px) {
     .profile-header__user {
-        display: flex;
         flex-direction: column;
         max-width: 282px;
     }
