@@ -1,0 +1,18 @@
+.profile-header__edit-button {
+    margin: 0 0 0 18px;
+    width: calc((100vw*24)/1280);
+    max-width: 24px;
+    min-width: 18px;
+}
+
+@media (max-width: 1279px) {
+    .profile-header__edit-button {
+        margin-left: calc((100vw*18)/1280);
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-header__edit-button {
+        margin-left: 10px;
+    }
+}

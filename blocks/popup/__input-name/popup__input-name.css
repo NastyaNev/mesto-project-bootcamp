@@ -1,0 +1,21 @@
+.popup__input-name {
+    margin-top: 44px;
+    padding: 0;
+    height: 27px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.popup__input-name:focus {
+    outline: none;
+}
+
+.popup__input-name::placeholder {
+    color: black;
+}
+
+@media (max-width: 767px) {
+    .popup__input-name {
+        margin-top: 70px;
+    }
+}

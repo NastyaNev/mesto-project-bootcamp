@@ -1,0 +1,19 @@
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+@media (max-width: 1279px) {
+    .profile-header {
+        margin-top: calc(100vw/(1280/40));;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-header {
+        flex-direction: column;
+        margin-top: 42px;
+    }
+}

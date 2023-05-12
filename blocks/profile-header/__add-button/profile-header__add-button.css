@@ -1,0 +1,15 @@
+.profile-header__add-button {
+    width: calc((100vw*150)/1280);
+    max-width: 150px;
+    height: 50px;
+    border: 2px #FFFFFF solid;
+    border-radius: 2px;
+    margin-left: 7px;
+}
+
+@media (max-width: 767px) {
+    .profile-header__add-button {
+        min-width: 282px;
+        margin: 36px 0 0 0;
+    }
+}

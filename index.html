@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="pages/index.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+</head>
+<body class="root">
+    
+    <div class="page">
+        <div class="popup">
+            <div class="popup__background"></div>
+            <form class="popup__container">
+                <button class="button" type="button">
+                    <img class="popup__button-close" src="images/Close Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
+                </button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <fieldset class="popup__input-container">
+                    <input type="texts" class="popup__input-name" placeholder="Жак-Ив Кусто" required>
+                    <input type="texts" class="popup__input-info" placeholder="Исследователь океана" required>
+                </fieldset>
+                <button class="button popup__button-save" type="submit">Сохранить</button>
+           </form>
+       </div>
+
+        <header class="header content content_wide_mobile">
+            <div class="header__logo-container">
+                <img class="logo" src="images/logo.svg" alt="Логотип сервиса Место">
+            </div>
+            <div class="header__line"></div> 
+        </header>
+
+        <main>
+            <div class="profile-header content">
+                <div class="profile-header__user">
+                    <img class="profile-header__user-avatar" src="images/image.jpg" alt="Аватар">
+                    <div class="profile-header__user-info">
+                        <h1 class="profile-header__user-name">Жак-Ив Кусто</h1>
+                        <button class="button" type="button">
+                            <img class="profile-header__edit-button" src="images/Edit Button.svg" alt="Кнопка &quot;Редактировать&quot;">
+                        </button>
+                        <p class="profile-header__user-description">Исследователь океана</p>
+                    </div>
+                </div>
+
+                <button class="button profile-header__add-button" type="button">
+                    <img class="profile-header__add-button-plus" src="images/Plus.svg" alt="Кнопка &quot;Добвыить&quot;">
+                </button>
+            </div>
+
+            <section class="gallery content">
+                <figure class="gallery__item">
+                    <img class="gallery__photo" src="images/gallery/Pushkin.jpg" alt="Пушкин">
+                    <div class="gallery__caption-row">
+                        <figcaption class="gallery__caption">Пушкин</figcaption>
+                        <button class="button" type="button">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
+                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                        </button>
+                    </div>
+                </figure>
+
+                <figure class="gallery__item">
+                    <img class="gallery__photo" src="images/gallery/Ruskeala.jpg" alt="Рускеала">
+                    <div class="gallery__caption-row">
+                        <figcaption class="gallery__caption">Рускеала</figcaption>
+                        <button class="button" type="button">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
+                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                        </button>
+                        </button>
+                    </div>
+                </figure>
+
+                <figure class="gallery__item">
+                    <img class="gallery__photo" src="images/gallery/Saint-P.jpg" alt="Санкт-Петербург">
+                    <div class="gallery__caption-row">
+                        <figcaption class="gallery__caption">Санкт-Петербург</figcaption>
+                        <button class="button" type="button">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
+                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                        </button>
+                        </button>
+                    </div>
+                </figure>
+
+                <figure class="gallery__item">
+                    <img class="gallery__photo" src="images/gallery/Tyrgoyak.jpg" alt="Тургояк">
+                    <div class="gallery__caption-row">
+                        <figcaption class="gallery__caption">Тургояк</figcaption>
+                        <button class="button" type="button">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
+                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                        </button>
+                        </button>
+                    </div>
+                </figure>
+
+                <figure class="gallery__item">
+                    <img class="gallery__photo" src="images/gallery/Ulyanovsk.jpg" alt="Ульяновск">
+                    <div class="gallery__caption-row">
+                        <figcaption class="gallery__caption">Ульяновск</figcaption>
+                        <button class="button" type="button">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
+                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                        </button>
+                        </button>
+                    </div>
+                </figure>
+
+                <figure class="gallery__item">
+                    <img class="gallery__photo" src="images/gallery/Pskov.jpg" alt="Псков">
+                    <div class="gallery__caption-row">
+                        <figcaption class="gallery__caption">Псков</figcaption>
+                        <button class="button" type="button">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
+                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                        </button>
+                        </button>
+                    </div>
+                </figure>
+            </section>
+
+        </main>
+
+        <footer class="footer content">
+            <p class="footer__autor">&copy; 2023 Mesto Russia</p>
+        </footer>
+
+    </div>
+</body>
+</html>

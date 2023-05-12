@@ -1,0 +1,25 @@
+.profile-header__user-description {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.78px;
+    margin: 7px 0 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media (max-width: 1279px) {
+    .profile-header__user-description {
+        font-size: calc((100vw*18)/1280);
+        line-height: calc((100vw*21.78)/1280);
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-header__user-description {
+        font-size: 14px;
+        line-height: 16.94px;
+        margin-top: 4px;
+        text-align: center;
+    }
+}

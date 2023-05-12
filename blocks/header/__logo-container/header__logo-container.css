@@ -1,0 +1,12 @@
+.header__logo-container {
+    height: calc(100vw/(1280/33));
+    max-height: 33px;
+    min-height: 24.4px;
+}
+
+@media (max-width: 767px) {
+    .header__logo-container {
+        margin-left: 27px;
+        width: 103.74px;
+    }
+}
