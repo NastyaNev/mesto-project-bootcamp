@@ -2,7 +2,7 @@
 
 ## *Социальная сеть для  путешественников*
 
-Ссылка на [**сайт**](https://nastyanev.github.io/mesto/ "Ссылка на GitHub Pages").
+Ссылка на [**сайт**](https://nastyanev.github.io/mesto-project-bootcamp/ "Ссылка на GitHub Pages").
 
 Что было сделано:
   * Создана разметка сайта в html.
