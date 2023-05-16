@@ -1,4 +1,4 @@
-.popup__input-name {
+.popup__input {
     margin-top: 44px;
     padding: 0;
     height: 27px;
@@ -6,16 +6,20 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup__input-name:focus {
+.popup__input:focus {
     outline: none;
 }
 
-.popup__input-name::placeholder {
+.popup__input::placeholder {
     color: black;
 }
 
+.popup__input:last-child {
+    margin-top: 30px;
+}
+
 @media (max-width: 767px) {
-    .popup__input-name {
+    .popup__input {
         margin-top: 70px;
     }
 }

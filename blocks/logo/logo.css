@@ -1,4 +1,21 @@
 .logo {
-    max-width: 100%;
-    height: 100%;
+    height: calc(100vw/(1280/33));
+    max-height: 33px;
+    min-height: 24.4px;
+    margin-right: auto;
+    margin-bottom: 41px;
  }
+
+ @media (max-width: 1279px) {
+    .logo {
+        margin-bottom: calc(100vw/(1280/41));
+    }
+}
+
+ @media (max-width: 767px) {
+    .logo {
+        margin-left: 27px;
+        width: 103.74px;
+        margin-bottom: 31.6px;
+    }
+}

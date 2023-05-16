@@ -10,7 +10,7 @@
 <body class="root">
     
     <div class="page">
-        <div class="popup popup_opened">
+        <div class="popup">
             <div class="popup__background"></div>
             <form class="popup__container" name="form1">
                 <button class="button" type="button">
@@ -18,18 +18,15 @@
                 </button>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <fieldset class="popup__input-container">
-                    <input type="text" class="popup__input-name" name="name" placeholder="Жак-Ив Кусто" required>
-                    <input type="text" class="popup__input-info" name="info" placeholder="Исследователь океана" required>
+                    <input type="text" class="popup__input" name="name" placeholder="Жак-Ив Кусто" required>
+                    <input type="text" class="popup__input" name="info" placeholder="Исследователь океана" required>
                 </fieldset>
                 <button class="button popup__button-save" type="submit">Сохранить</button>
            </form>
        </div>
 
         <header class="header content content_wide_mobile">
-            <div class="header__logo-container">
                 <img class="logo" src="images/logo.svg" alt="Логотип сервиса Место">
-            </div>
-            <div class="header__line"></div> 
         </header>
 
         <main>
@@ -56,8 +53,7 @@
                     <div class="gallery__caption-row">
                         <h2 class="gallery__caption">Пушкин</h2>
                         <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
-                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
                         </button>
                     </div>
                 </figure>
@@ -67,8 +63,7 @@
                     <div class="gallery__caption-row">
                         <h2 class="gallery__caption">Рускеала</h2>
                         <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
-                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
                         </button>
                     </div>
                 </figure>
@@ -78,8 +73,7 @@
                     <div class="gallery__caption-row">
                         <h2 class="gallery__caption">Санкт-Петербург</h2>
                         <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
-                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
                         </button>
                     </div>
                 </figure>
@@ -89,8 +83,7 @@
                     <div class="gallery__caption-row">
                         <h2 class="gallery__caption">Тургояк</h2>
                         <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
-                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
                         </button>
                     </div>
                 </figure>
@@ -100,8 +93,7 @@
                     <div class="gallery__caption-row">
                         <h2 class="gallery__caption">Ульяновск</h2>
                         <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
-                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
                         </button>
                     </div>
                 </figure>
@@ -111,8 +103,7 @@
                     <div class="gallery__caption-row">
                         <h2 class="gallery__caption">Псков</h2>
                         <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot; неактивна">
-                            <img class="gellary__like-button_active" src="images/Like-active.svg" alt="Кнопка &quot;Лайк&quot; активна">
+                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
                         </button>
                     </div>
                 </figure>
@@ -125,5 +116,6 @@
         </footer>
 
     </div>
+    <script src="index.js" ></script>
 </body>
 </html>
