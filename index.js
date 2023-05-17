@@ -35,14 +35,11 @@ formElement.addEventListener('submit', handleFormSubmit);
 saveButton.addEventListener('click', popupClose);
 
 const likeButtons = document.querySelectorAll('.gellary__like-button');
-const likeArray = Array.from(likeButtons);
 
-likeArray.forEach(function (item) {
+likeButtons.forEach(likeButton => likeButton.addEventListener('click', function() {
     console.log('I ve been liked');
-    item.classList.toggle('gellary__like-button_active');
-});
-
-item.addEventListener('click', likeActive);
+    likeButton.classList.toggle('gellary__like-button_active');
+}));
 
 
 
