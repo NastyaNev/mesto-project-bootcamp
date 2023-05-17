@@ -67,17 +67,19 @@ likeButtons.forEach(likeButton => likeButton.addEventListener('click', function(
 
 const placeInput = document.querySelector('.popup__input_place');
 const linkInput = document.querySelector('.popup__input_link');
-const formElementAdd = document.querySelector('.popup__container_add')
+const formElementAdd = document.querySelector('.popup__container_add');
+const buttonCreate = document.querySelector('.popup__button-create');
+
+
+function addCard() {
+    const galleryItems = document.querySelector('.gallery');
+    const galleryItem = document.createElement('.gallery__item');
+    galleryItems.append(galleryItem);
+};
 
 function handleFormSubmitAdd() {
     evt.preventDefault();
   
-    const galleryItems = document.querySelector('.gallery');
-
-    const galleryItem = document.createElement('.gallery__item');
-
-    galleryItems.append(galleryItem);
-
     const galleryCaption = document.querySelector('.gallery__caption');
     const galleryPhoto = document.querySelector('.gallery__photo');
     
@@ -85,7 +87,8 @@ function handleFormSubmitAdd() {
     galleryPhoto.textContent = linkInput;
 
     console.log('I ve been added');
-}
+};
 
+buttonCreate.addEventListener('submit', addCard);
 formElementAdd.addEventListener('submit', handleFormSubmitAdd); 
 
