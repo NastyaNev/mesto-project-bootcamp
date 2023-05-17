@@ -5,7 +5,7 @@ const closePopupButtons = document.querySelectorAll('.popup__button-close');
 const formElementEdit = document.querySelector('.popup__container_edit');
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_info');
-const saveButton = document.querySelector('.popup__button-save');
+// const saveButton = document.querySelector('.popup__button-save');
 const addButton = document.querySelector('.profile-header__add-button');
 const popupAdd = document.querySelector('.popup__add');
 const submits = document.querySelectorAll("button[type=submit]");
@@ -65,30 +65,28 @@ likeButtons.forEach(likeButton => likeButton.addEventListener('click', function(
     likeButton.classList.toggle('gellary__like-button_active');
 }));
 
+const createButton = document.querySelector('.popup__button-create');
 const placeInput = document.querySelector('.popup__input_place');
 const linkInput = document.querySelector('.popup__input_link');
-const formElementAdd = document.querySelector('.popup__container_add');
-const buttonCreate = document.querySelector('.popup__button-create');
 
-
-function addCard() {
-    const galleryItems = document.querySelector('.gallery');
-    const galleryItem = document.createElement('.gallery__item');
-    galleryItems.append(galleryItem);
-};
-
-function handleFormSubmitAdd() {
+function handleFormSubmitAdd(evt) {
     evt.preventDefault();
-  
+
+    const galleryItem = document.querySelector('.gallery__item');
+    const newGalleryItem = galleryItem.cloneNode(true);
+    galleryItem.after(newGalleryItem);
+
     const galleryCaption = document.querySelector('.gallery__caption');
     const galleryPhoto = document.querySelector('.gallery__photo');
     
-    galleryCaption.textContent = placeInput;
-    galleryPhoto.textContent = linkInput;
+    galleryCaption.textContent = placeInput.value;
+    galleryPhoto.src = linkInput.value;
 
-    console.log('I ve been added');
-};
+    console.log('I ve been created');
+}
 
-buttonCreate.addEventListener('submit', addCard);
-formElementAdd.addEventListener('submit', handleFormSubmitAdd); 
+createButton.addEventListener('click', handleFormSubmitAdd);
+
+
+
 
