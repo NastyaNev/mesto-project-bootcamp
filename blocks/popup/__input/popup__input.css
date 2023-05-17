@@ -10,7 +10,7 @@
     outline: none;
 }
 
-.popup__input::placeholder {
+.popup__input::value {
     color: black;
 }
 

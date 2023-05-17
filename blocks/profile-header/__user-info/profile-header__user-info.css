@@ -1,7 +1,7 @@
 .profile-header__user-info {
     margin-left: 30px;
     display: grid;
-    grid-template-columns: fit-content(350px) 1fr;
+    grid-template-columns: fit-content(470px) 1fr;
     align-items: baseline;
 }
 

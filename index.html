@@ -10,9 +10,9 @@
 <body class="root">
     
     <div class="page">
-        <div class="popup">
+        <div class="popup popup__edit">
             <div class="popup__background"></div>
-            <form class="popup__container" name="form1">
+            <form class="popup__container popup__container_edit" name="form1">
                 <button class="button" type="button">
                     <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
@@ -24,6 +24,21 @@
                 <button class="button popup__button-save" type="submit">Сохранить</button>
            </form>
        </div>
+
+       <div class="popup popup__add">
+            <div class="popup__background"></div>
+            <form class="popup__container popup__container_add" name="form2">
+                <button class="button" type="button">
+                    <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
+                </button>
+                <h3 class="popup__title">Новое место</h3>
+                <fieldset class="popup__input-container">
+                    <input type="text" class="popup__input popup__input_place" placeholder="Название" value="" required>
+                    <input type="text" class="popup__input popup__input_link" placeholder="Ссылка на картинку" value="" required>
+                </fieldset>
+                <button class="button popup__button-save" type="submit">Создать</button>
+            </form>
+        </div>
 
         <header class="header content content_wide_mobile">
                 <img class="logo" src="images/logo.svg" alt="Логотип сервиса Место">
