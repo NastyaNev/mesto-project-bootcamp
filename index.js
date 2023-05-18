@@ -68,13 +68,17 @@ likeButtons.forEach(likeButton => likeButton.addEventListener('click', function(
 const createButton = document.querySelector('.popup__button-create');
 const placeInput = document.querySelector('.popup__input_place');
 const linkInput = document.querySelector('.popup__input_link');
-const galleryItem = document.querySelector('.gallery__item');
+
 
 function handleFormSubmitAdd(evt) {
     evt.preventDefault();
 
-    const newGalleryItem = galleryItem.cloneNode(true);
-    galleryItem.after(newGalleryItem);
+    const galleryItemTemplate = document.querySelector('#gallery__item').content;
+    const gallery = document.querySelector('.gallery');
+
+    const galleryElement = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
+
+    gallery.append(galleryElement); 
 
     const galleryCaption = document.querySelector('.gallery__caption');
     const galleryPhoto = document.querySelector('.gallery__photo');

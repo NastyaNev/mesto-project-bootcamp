@@ -46,7 +46,7 @@
                 <button class="button" type="button">
                     <img class="popup__button-close popup__button-close_photo_active" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
-                <img class="popup__photo" src="" alt="Пушкин">
+                <img class="popup__photo" src="" alt="">
                 <h2 class="popup__photo-caption"></h2>
             </div>
         </div>
@@ -74,6 +74,25 @@
             </div>
 
             <section class="gallery content">
+                <template id="gallery__item">
+                    <figure class="gallery__item">
+                        <button class="button gallery__photo-button" type="button">
+                            <img class="gallery__photo" src="" alt="">
+                        </button>
+                        <button class="button" type="button">
+                            <img  class="gallery__delete-button" src="images/Trash.svg" alt="Кнопка &quot;Удалить&quot;">
+                        </button>
+                        <div class="gallery__caption-row">
+                            <h2 class="gallery__caption"></h2>
+                            <button class="button" type="button">
+                                <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
+                            </button>
+                        </div>
+                    </figure>
+                </template>
+            </section>
+
+            <!-- <section class="gallery content">
                 <figure class="gallery__item">
                     <button class="button gallery__photo-button" type="button">
                         <img class="gallery__photo" src="images/gallery/Pushkin.jpg" alt="Пушкин">
@@ -163,7 +182,7 @@
                         </button>
                     </div>
                 </figure>
-            </section>
+            </section> -->
 
         </main>
 
