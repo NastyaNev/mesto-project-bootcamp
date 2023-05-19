@@ -5,7 +5,6 @@ const closePopupButtons = document.querySelectorAll('.popup__button-close');
 const formElementEdit = document.querySelector('.popup__container_edit');
 const nameInput = document.querySelector('.popup__input_name');
 const jobInput = document.querySelector('.popup__input_info');
-// const saveButton = document.querySelector('.popup__button-save');
 const addButton = document.querySelector('.profile-header__add-button');
 const popupAdd = document.querySelector('.popup__add');
 const submits = document.querySelectorAll("button[type=submit]");
@@ -20,11 +19,6 @@ function popupAddOpen() {
     popupAdd.classList.add('popup_opened');
 };
 
-// function popupClose() {
-//     console.log('I ve been closed');
-//     popup.classList.remove('popup_opened');
-// };
-
 closePopupButtons.forEach(closePopupButton => closePopupButton.addEventListener('click', function() {
     console.log('I ve been closed');
     popups.forEach(function(popup) {
@@ -34,7 +28,6 @@ closePopupButtons.forEach(closePopupButton => closePopupButton.addEventListener(
 
 editButton.addEventListener('click', popupEditOpen);
 addButton.addEventListener('click', popupAddOpen);
-// closePopupButton.addEventListener('click', popupClose);
 
 function handleFormSubmitEdit(evt) {
     evt.preventDefault();
@@ -56,59 +49,57 @@ submits.forEach(submit => submit.addEventListener('click', function() {
 }));
 
 formElementEdit.addEventListener('submit', handleFormSubmitEdit); 
-// saveButton.addEventListener('click', popupClose);
 
-const likeButtons = document.querySelectorAll('.gellary__like-button');
+// Array
 
-likeButtons.forEach(likeButton => likeButton.addEventListener('click', function() {
-    console.log('I ve been liked');
-    likeButton.classList.toggle('gellary__like-button_active');
-}));
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
 
-const createButton = document.querySelector('.popup__button-create');
-const placeInput = document.querySelector('.popup__input_place');
-const linkInput = document.querySelector('.popup__input_link');
 
+// Add cards
+const galleryTemplate = document
+    .getElementById('gallery__template')
+    .content.querySelector('.gallery__item');
 
-function handleFormSubmitAdd(evt) {
-    evt.preventDefault();
-
-    const galleryItemTemplate = document.querySelector('#gallery__item').content;
-    const gallery = document.querySelector('.gallery');
-
-    const galleryElement = galleryItemTemplate.querySelector('.gallery__item').cloneNode(true);
-
-    gallery.append(galleryElement); 
-
-    const galleryCaption = document.querySelector('.gallery__caption');
-    const galleryPhoto = document.querySelector('.gallery__photo');
-    
-    galleryCaption.textContent = placeInput.value;
-    galleryPhoto.src = linkInput.value;
-    galleryPhoto.alt = placeInput.value;
-
-    console.log('I ve been created');
+function handleDeleteElement(element) {
+    console.log('I ve been deleted');
+    element.remove();
 }
 
-createButton.addEventListener('click', handleFormSubmitAdd);
+function handleLikeElement(element) {
+    console.log('I ve been liked');
+    element.querySelector('.gellary__like-button').classList.toggle('gellary__like-button_active');
+}
 
-const deleteButtons = document.querySelectorAll('.gallery__delete-button');
-
-deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
-    console.log('I ve been deleted');
-    const galleryItem = document.querySelector('.gallery__item');
-    galleryItem.remove();
-}));
-
-const galleryPhotoButtons = document.querySelectorAll('.gallery__photo-button');
-const popupsOpenPhoto = document.querySelectorAll('.popup__open-photo');
-
-galleryPhotoButtons.forEach(galleryPhotoButton => galleryPhotoButton.addEventListener('click', function() {
-    console.log('I ve been wide-opened');    
-    popupsOpenPhoto.forEach(function(popupOpenPhoto) {
-        popupOpenPhoto.classList.add('popup_opened');
-    });
-
+function handleOpenWideElement(popup) {
+    console.log('I ve been wide-opened');
+    
+    popup.classList.add('popup_opened');
+   
     const galleryCaption = document.querySelector('.gallery__caption');
     const popupPhotoCaption = document.querySelector('.popup__photo-caption');
     const galleryPhoto = document.querySelector('.gallery__photo');
@@ -117,7 +108,100 @@ galleryPhotoButtons.forEach(galleryPhotoButton => galleryPhotoButton.addEventLis
     popupPhotoCaption.textContent = galleryCaption.textContent;
     popupPhoto.src = galleryPhoto.src;
     popupPhoto.alt = galleryCaption.textContent;
-}));
+}
+
+function addGalleryElement(name) {
+    const galleryElement = galleryTemplate.cloneNode(true);
+
+    const galleryCaption = galleryElement.querySelector('.gallery__caption');
+    const galleryPhoto = galleryElement.querySelector('.gallery__photo');
+
+    const deleteButton = galleryElement.querySelector('.gallery__delete-button');
+    const likeButton = galleryElement.querySelector('.gellary__like-button');
+    const openWideButton = galleryElement.querySelector('.gallery__photo-button');
+    const popupOpenPhoto = document.querySelector('.popup__open-photo');
+
+    galleryCaption.textContent = name;
+
+    galleryCaption.textContent = placeInput.value;
+    galleryPhoto.src = linkInput.value;
+    galleryPhoto.alt = placeInput.value;
+
+    deleteButton.addEventListener('click', () => handleDeleteElement(galleryElement));
+    likeButton.addEventListener('click', () => handleLikeElement(galleryElement));
+    openWideButton.addEventListener('click', () => handleOpenWideElement(popupOpenPhoto));
+
+    return galleryElement;
+}
+
+const addForm = document.querySelector('.popup__container_add');
+const placeInput = addForm.querySelector('.popup__input_place');
+const linkInput = addForm.querySelector('.popup__input_link');
+const galleryContainer = document.querySelector('.gallery');
+
+function handleFormSubmitAdd(evt) {
+    evt.preventDefault();
+    const newGalleryElement = addGalleryElement(placeInput.value);
+    galleryContainer.prepend(newGalleryElement);
+
+    addForm.reset();
+
+    console.log('I ve been created');
+}
+
+addForm.addEventListener('submit', handleFormSubmitAdd);
+
+initialCards.forEach(item => {
+    const newGalleryElement = addGalleryElement(item);
+
+    // newGalleryElement.querySelector('.gallery__caption').textContent = item.name;
+    // newGalleryElement.querySelector('.gallery__link').src = item.link;
+    
+    galleryContainer.prepend(newGalleryElement);
+});
+
+
+
+
+
+
+// Like button
+// const likeButtons = document.querySelectorAll('.gellary__like-button');
+
+// likeButtons.forEach(likeButton => likeButton.addEventListener('click', function() {
+//     console.log('I ve been liked');
+//     likeButton.classList.toggle('gellary__like-button_active');
+// }));
+
+// Delete button
+// const deleteButtons = document.querySelectorAll('.gallery__delete-button');
+
+// deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
+//     console.log('I ve been deleted');
+//     const galleryItem = document.querySelector('.gallery__item');
+//     galleryItem.remove();
+// }));
+
+
+// Photo wide-open
+// const galleryPhotoButtons = document.querySelectorAll('.gallery__photo-button');
+// const popupsOpenPhoto = document.querySelectorAll('.popup__open-photo');
+
+// galleryPhotoButtons.forEach(galleryPhotoButton => galleryPhotoButton.addEventListener('click', function() {
+//     console.log('I ve been wide-opened');    
+//     popupsOpenPhoto.forEach(function(popupOpenPhoto) {
+//         popupOpenPhoto.classList.add('popup_opened');
+//     });
+
+//     const galleryCaption = document.querySelector('.gallery__caption');
+//     const popupPhotoCaption = document.querySelector('.popup__photo-caption');
+//     const galleryPhoto = document.querySelector('.gallery__photo');
+//     const popupPhoto = document.querySelector('.popup__photo');
+    
+//     popupPhotoCaption.textContent = galleryCaption.textContent;
+//     popupPhoto.src = galleryPhoto.src;
+//     popupPhoto.alt = galleryCaption.textContent;
+// }));
 
 
 
