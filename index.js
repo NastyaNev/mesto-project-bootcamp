@@ -54,33 +54,33 @@ formElementEdit.addEventListener('submit', handleFormSubmitEdit);
 
 const initialCards = [
     {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+      name: 'Пушкин',
+      link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Pushkin.jpg'
     },
     {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+      name: 'Рускеала',
+      link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Ruskeala.jpg'
     },
     {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+      name: 'Санкт-Петербург',
+      link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Saint-P.jpg'
     },
     {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+      name: 'Тургояк',
+      link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Tyrgoyak.jpg'
     },
     {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+      name: 'Ульяновск',
+      link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Ulyanovsk.jpg'
     },
     {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+      name: 'Псков',
+      link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Pskov.jpg'
     }
   ];
 
+// Cards buttons
 
-// Add cards
 const galleryTemplate = document
     .getElementById('gallery__template')
     .content.querySelector('.gallery__item');
@@ -95,20 +95,31 @@ function handleLikeElement(element) {
     element.querySelector('.gellary__like-button').classList.toggle('gellary__like-button_active');
 }
 
-function handleOpenWideElement(popup) {
-    console.log('I ve been wide-opened');
-    
-    popup.classList.add('popup_opened');
-   
-    const galleryCaption = document.querySelector('.gallery__caption');
-    const popupPhotoCaption = document.querySelector('.popup__photo-caption');
-    const galleryPhoto = document.querySelector('.gallery__photo');
-    const popupPhoto = document.querySelector('.popup__photo');
+initialCards.forEach(initialCard => function createPhotoPopupElement(name) {
+    const photoPopupElement = document.querySelector('.popup__open-photo');
+
+    const galleryCaption = initialCard.querySelector('.gallery__caption');
+    const popupPhotoCaption = photoPopupElement.querySelector('.popup__photo-caption');
+    const galleryPhoto = initialCard.querySelector('.gallery__photo');
+    const popupPhoto = photoPopupElement.querySelector('.popup__photo');
+
+    popupPhotoCaption.textContent = name; 
     
     popupPhotoCaption.textContent = galleryCaption.textContent;
     popupPhoto.src = galleryPhoto.src;
     popupPhoto.alt = galleryCaption.textContent;
+
+    return photoPopupElement;
+});
+
+function handleOpenWidePopup(popup) {
+    console.log('I ve been wide-opened');
+    popup.classList.add('popup_opened');
+    
+    // createPhotoPopupElement();
 }
+
+// Add cards
 
 function addGalleryElement(name) {
     const galleryElement = galleryTemplate.cloneNode(true);
@@ -129,7 +140,7 @@ function addGalleryElement(name) {
 
     deleteButton.addEventListener('click', () => handleDeleteElement(galleryElement));
     likeButton.addEventListener('click', () => handleLikeElement(galleryElement));
-    openWideButton.addEventListener('click', () => handleOpenWideElement(popupOpenPhoto));
+    openWideButton.addEventListener('click', () => handleOpenWidePopup(popupOpenPhoto));
 
     return galleryElement;
 }
@@ -141,7 +152,7 @@ const galleryContainer = document.querySelector('.gallery');
 
 function handleFormSubmitAdd(evt) {
     evt.preventDefault();
-    const newGalleryElement = addGalleryElement(placeInput.value);
+    const newGalleryElement = addGalleryElement(linkInput.value);
     galleryContainer.prepend(newGalleryElement);
 
     addForm.reset();
@@ -151,14 +162,45 @@ function handleFormSubmitAdd(evt) {
 
 addForm.addEventListener('submit', handleFormSubmitAdd);
 
-initialCards.forEach(item => {
-    const newGalleryElement = addGalleryElement(item);
+initialCards.forEach(function (element) {
+    const newGalleryElement = addGalleryElement(element);
 
-    // newGalleryElement.querySelector('.gallery__caption').textContent = item.name;
-    // newGalleryElement.querySelector('.gallery__link').src = item.link;
-    
-    galleryContainer.prepend(newGalleryElement);
+    newGalleryElement.querySelector('.gallery__caption').textContent = element.name;
+    newGalleryElement.querySelector('.gallery__photo').src = element.link;
+
+    galleryContainer.append(newGalleryElement);
 });
+
+// // Photo wide-open
+// const galleryPhotoButtons = galleryContainer.querySelectorAll('.gallery__photo-button');
+// const popupOpenPhoto = document.querySelector('.popup__open-photo');
+
+// galleryPhotoButtons.forEach(galleryPhotoButton => galleryPhotoButton.addEventListener('click', function() {
+//     console.log('I ve been wide-opened');    
+    
+//     popupOpenPhoto.classList.add('popup_opened');
+
+
+//     const galleryCaption = galleryContainer.querySelector('.gallery__caption');
+//     const popupPhotoCaption = galleryContainer.querySelector('.popup__photo-caption');
+//     const galleryPhoto = galleryContainer.querySelector('.gallery__photo');
+//     const popupPhoto = galleryContainer.querySelector('.popup__photo');
+    
+//     popupPhotoCaption.textContent = galleryCaption.textContent;
+//     popupPhoto.src = galleryPhoto.src;
+//     popupPhoto.alt = galleryCaption.textContent;
+// }));
+
+// directors.forEach(function (element) {
+    //     const directorElement = directorTemplate.cloneNode(true);
+      
+    //     directorElement.querySelector('.directors__name').textContent = element.name;
+    //     directorElement.querySelector('.directors__description').textContent = element.career;
+    //     directorElement.querySelector('.directors__films').href = element.films;
+      
+    //     directorsList.append(directorElement)
+    //   })
+
 
 
 
