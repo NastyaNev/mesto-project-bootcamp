@@ -1,57 +1,17 @@
 const editButton = document.querySelector('.profile-header__edit-button');
 const popups = document.querySelectorAll('.popup');
-const popupEdit = document.querySelector('.popup__edit');
+const popupEdit = document.querySelector('.popup__type_edit');
 const closePopupButtons = document.querySelectorAll('.popup__button-close');
-const formElementEdit = document.querySelector('.popup__container_edit');
-const nameInput = document.querySelector('.popup__input_name');
-const jobInput = document.querySelector('.popup__input_info');
+const formElementEdit = document.querySelector('.popup__container_type_edit');
+const nameInput = document.querySelector('.popup__input_value_name');
+const jobInput = document.querySelector('.popup__input_value_info');
 const addButton = document.querySelector('.profile-header__add-button');
-const popupAdd = document.querySelector('.popup__add');
+const popupAdd = document.querySelector('.popup__type_add');
 const submits = document.querySelectorAll("button[type=submit]");
-
-function popupEditOpen() {
-    console.log('I ve been clicked');
-    popupEdit.classList.add('popup_opened');
-};
-
-function popupAddOpen() {
-    console.log('I ve been clicked');
-    popupAdd.classList.add('popup_opened');
-};
-
-closePopupButtons.forEach(closePopupButton => closePopupButton.addEventListener('click', function() {
-    console.log('I ve been closed');
-    popups.forEach(function(popup) {
-        popup.classList.remove('popup_opened');
-    });
-}));
-
-editButton.addEventListener('click', popupEditOpen);
-addButton.addEventListener('click', popupAddOpen);
-
-function handleFormSubmitEdit(evt) {
-    evt.preventDefault();
-  
-    const userName = document.querySelector('.profile-header__user-name');
-    const userInfo = document.querySelector('.profile-header__user-description');
-    
-    userName.textContent = nameInput.value;
-    userInfo.textContent = jobInput.value;
-
-    console.log('I ve been saved');
-}
-
-submits.forEach(submit => submit.addEventListener('click', function() {
-    console.log('I ve been saved and closed');
-    popups.forEach(function(popup) {
-        popup.classList.remove('popup_opened');
-    });
-}));
-
-formElementEdit.addEventListener('submit', handleFormSubmitEdit); 
-
-// Array
-
+const addForm = document.querySelector('.popup__container_type_add');
+const placeInput = addForm.querySelector('.popup__input_value_place');
+const linkInput = addForm.querySelector('.popup__input_value_link');
+const galleryContainer = document.querySelector('.gallery');
 const initialCards = [
     {
       name: 'Пушкин',
@@ -79,28 +39,66 @@ const initialCards = [
     }
   ];
 
-// Cards buttons
+const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
 
-const galleryTemplate = document
-    .getElementById('gallery__template')
-    .content.querySelector('.gallery__item');
+function popupEditOpen() {
+    popupEdit.classList.add('popup_opened');
+
+    console.log('I ve been clicked');
+}
+
+function popupAddOpen() {
+    popupAdd.classList.add('popup_opened');
+
+    console.log('I ve been clicked');
+};
+
+closePopupButtons.forEach(closePopupButton => closePopupButton.addEventListener('click', function() {
+    popups.forEach(function(popup) {
+        popup.classList.remove('popup_opened');
+    });
+
+    console.log('I ve been closed');
+}));
+
+function handleFormSubmitEdit(evt) {
+    evt.preventDefault();
+  
+    const userName = document.querySelector('.profile-header__user-name');
+    const userInfo = document.querySelector('.profile-header__user-description');
+    
+    userName.textContent = nameInput.value;
+    userInfo.textContent = jobInput.value;
+
+    console.log('I ve been saved');
+}
+
+submits.forEach(submit => submit.addEventListener('click', function() {
+    popups.forEach(function(popup) {
+        popup.classList.remove('popup_opened');
+    });
+
+    console.log('I ve been saved and closed');
+}));
 
 function handleDeleteElement(element) {
-    console.log('I ve been deleted');
     element.remove();
+
+    console.log('I ve been deleted');
 }
 
 function handleLikeElement(element) {
-    console.log('I ve been liked');
     element.querySelector('.gellary__like-button').classList.toggle('gellary__like-button_active');
+
+    console.log('I ve been liked');
 }
 
-initialCards.forEach(initialCard => function createPhotoPopupElement(name) {
-    const photoPopupElement = document.querySelector('.popup__open-photo');
+function createPhotoPopupElement(name) {
+    const photoPopupElement = document.querySelector('.popup__container_photo-active');
 
-    const galleryCaption = initialCard.querySelector('.gallery__caption');
+    const galleryCaption = document.querySelector('.gallery__caption');
     const popupPhotoCaption = photoPopupElement.querySelector('.popup__photo-caption');
-    const galleryPhoto = initialCard.querySelector('.gallery__photo');
+    const galleryPhoto = document.querySelector('.gallery__photo');
     const popupPhoto = photoPopupElement.querySelector('.popup__photo');
 
     popupPhotoCaption.textContent = name; 
@@ -110,16 +108,15 @@ initialCards.forEach(initialCard => function createPhotoPopupElement(name) {
     popupPhoto.alt = galleryCaption.textContent;
 
     return photoPopupElement;
-});
-
-function handleOpenWidePopup(popup) {
-    console.log('I ve been wide-opened');
-    popup.classList.add('popup_opened');
-    
-    // createPhotoPopupElement();
 }
 
-// Add cards
+function handleOpenWidePopup(popup) {
+    popup.classList.add('popup_opened');
+    
+    createPhotoPopupElement();
+
+    console.log('I ve been wide-opened');
+}
 
 function addGalleryElement(name) {
     const galleryElement = galleryTemplate.cloneNode(true);
@@ -130,7 +127,7 @@ function addGalleryElement(name) {
     const deleteButton = galleryElement.querySelector('.gallery__delete-button');
     const likeButton = galleryElement.querySelector('.gellary__like-button');
     const openWideButton = galleryElement.querySelector('.gallery__photo-button');
-    const popupOpenPhoto = document.querySelector('.popup__open-photo');
+    const popupOpenPhoto = document.querySelector('.popup__type_open-photo');
 
     galleryCaption.textContent = name;
 
@@ -145,11 +142,6 @@ function addGalleryElement(name) {
     return galleryElement;
 }
 
-const addForm = document.querySelector('.popup__container_add');
-const placeInput = addForm.querySelector('.popup__input_place');
-const linkInput = addForm.querySelector('.popup__input_link');
-const galleryContainer = document.querySelector('.gallery');
-
 function handleFormSubmitAdd(evt) {
     evt.preventDefault();
     const newGalleryElement = addGalleryElement(linkInput.value);
@@ -160,8 +152,6 @@ function handleFormSubmitAdd(evt) {
     console.log('I ve been created');
 }
 
-addForm.addEventListener('submit', handleFormSubmitAdd);
-
 initialCards.forEach(function (element) {
     const newGalleryElement = addGalleryElement(element);
 
@@ -170,6 +160,13 @@ initialCards.forEach(function (element) {
 
     galleryContainer.append(newGalleryElement);
 });
+
+
+editButton.addEventListener('click', popupEditOpen);
+addButton.addEventListener('click', popupAddOpen);
+formElementEdit.addEventListener('submit', handleFormSubmitEdit); 
+addForm.addEventListener('submit', handleFormSubmitAdd);
+
 
 // // Photo wide-open
 // const galleryPhotoButtons = galleryContainer.querySelectorAll('.gallery__photo-button');

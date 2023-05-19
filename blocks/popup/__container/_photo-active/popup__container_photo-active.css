@@ -1,17 +1,19 @@
-.popup__container_photo_active {
+.popup__container_photo-active {
     display: flex;
     flex-direction: column;
     left: 50%;
     transform: translate(-50%, 12%);
     padding: 0;
     max-width: 75vw;
+    min-height: 400px;
     background: none;
     border-radius: 0;
     color:#FFFFFF;
 }
 
 @media (max-width: 767px) {
-    .popup__container_photo_active {
+    .popup__container_photo-active {
         transform: translate(-50%, 36%);
+        min-height: 120px;
     }
 }

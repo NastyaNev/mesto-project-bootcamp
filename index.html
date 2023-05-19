@@ -10,41 +10,41 @@
 <body class="root">
     
     <div class="page">
-        <div class="popup popup__edit">
+        <div class="popup popup__type_edit">
             <div class="popup__background"></div>
-            <form class="popup__container popup__container_edit" name="form1">
+            <form class="popup__container popup__container_type_edit" name="form1">
                 <button class="button" type="button">
                     <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <fieldset class="popup__input-container">
-                    <input type="text" class="popup__input popup__input_name" placeholder="Имя" value="Жак-Ив Кусто" required>
-                    <input type="text" class="popup__input popup__input_info" placeholder="О себе" value="Исследователь океана" required>
+                    <input type="text" class="popup__input popup__input_value_name" placeholder="Имя" value="Жак-Ив Кусто" required>
+                    <input type="text" class="popup__input popup__input_value_info" placeholder="О себе" value="Исследователь океана" required>
                 </fieldset>
                 <button class="button popup__button-save" type="submit">Сохранить</button>
            </form>
        </div>
 
-       <div class="popup popup__add">
+       <div class="popup popup__type_add">
             <div class="popup__background"></div>
-            <form class="popup__container popup__container_add" name="form2">
+            <form class="popup__container popup__container_type_add" name="form2">
                 <button class="button" type="button">
                     <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
                 <h3 class="popup__title">Новое место</h3>
                 <fieldset class="popup__input-container">
-                    <input type="text" class="popup__input popup__input_place" placeholder="Название" value="">
-                    <input type="text" class="popup__input popup__input_link" placeholder="Ссылка на картинку" value="">
+                    <input type="text" class="popup__input popup__input_value_place" placeholder="Название" value="">
+                    <input type="text" class="popup__input popup__input_value_link" placeholder="Ссылка на картинку" value="">
                 </fieldset>
                 <button class="button popup__button-save popup__button-create" type="submit">Создать</button>
             </form>
         </div>
 
-        <div class="popup popup__open-photo">
-            <div class="popup__background popup__background_photo_active"></div>
-            <div  class="popup__container popup__container_photo_active">
+        <div class="popup popup__type_open-photo">
+            <div class="popup__background popup__background_photo-active"></div>
+            <div  class="popup__container popup__container_photo-active">
                 <button class="button" type="button">
-                    <img class="popup__button-close popup__button-close_photo_active" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
+                    <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
                 <img class="popup__photo" src="" alt="">
                 <h2 class="popup__photo-caption"></h2>
@@ -73,32 +73,31 @@
                 </button>
             </div>
 
-            <section class="gallery content">
-            </section>
-
-            <template id="gallery__template">
-                <figure class="gallery__item">
-                    <button class="button gallery__photo-button" type="button" id="photo">
-                        <img class="gallery__photo" src="" alt="">
-                    </button>
-                    <button class="button" type="button">
-                        <img  class="gallery__delete-button" src="images/Trash.svg" alt="Кнопка &quot;Удалить&quot;">
-                    </button>
-                    <div class="gallery__caption-row">
-                        <h2 class="gallery__caption"></h2>
-                        <button class="button" type="button">
-                            <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
-                        </button>
-                    </div>
-                </figure>
-            </template>
+            <section class="gallery content"></section>
         </main>
 
         <footer class="footer content">
             <p class="footer__autor">&copy; 2023 Mesto Russia</p>
         </footer>
-
     </div>
-    <script src="index.js" ></script>
+    
+    <template id="gallery__template">
+        <figure class="gallery__item">
+            <button class="button gallery__photo-button" type="button" id="photo">
+                <img class="gallery__photo" src="" alt="">
+            </button>
+            <button class="button" type="button">
+                <img  class="gallery__delete-button" src="images/Trash.svg" alt="Кнопка &quot;Удалить&quot;">
+            </button>
+            <div class="gallery__caption-row">
+                <h2 class="gallery__caption"></h2>
+                <button class="button" type="button">
+                    <img class="gellary__like-button" src="images/Like.svg" alt="Кнопка &quot;Лайк&quot;">
+                </button>
+            </div>
+        </figure>
+    </template>
+
+    <script src="index.js"></script>
 </body>
 </html>
