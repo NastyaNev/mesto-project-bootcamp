@@ -93,27 +93,19 @@ function handleLikeElement(element) {
     console.log('I ve been liked');
 }
 
-function createPhotoPopupElement(name) {
-    const photoPopupElement = document.querySelector('.popup__container_photo-active');
+function handleOpenWidePopup(popupOpenPhoto) {
+    popupOpenPhoto.classList.add('popup_opened');
 
+    const photoPopupElement = document.querySelector('.popup__container_photo-active');
+    
     const galleryCaption = document.querySelector('.gallery__caption');
     const popupPhotoCaption = photoPopupElement.querySelector('.popup__photo-caption');
     const galleryPhoto = document.querySelector('.gallery__photo');
     const popupPhoto = photoPopupElement.querySelector('.popup__photo');
-
-    popupPhotoCaption.textContent = name; 
     
     popupPhotoCaption.textContent = galleryCaption.textContent;
     popupPhoto.src = galleryPhoto.src;
     popupPhoto.alt = galleryCaption.textContent;
-
-    return photoPopupElement;
-}
-
-function handleOpenWidePopup(popup) {
-    popup.classList.add('popup_opened');
-    
-    createPhotoPopupElement();
 
     console.log('I ve been wide-opened');
 }
@@ -161,88 +153,7 @@ initialCards.forEach(function (element) {
     galleryContainer.append(newGalleryElement);
 });
 
-
 editButton.addEventListener('click', popupEditOpen);
 addButton.addEventListener('click', popupAddOpen);
 formElementEdit.addEventListener('submit', handleFormSubmitEdit); 
 addForm.addEventListener('submit', handleFormSubmitAdd);
-
-
-// // Photo wide-open
-// const galleryPhotoButtons = galleryContainer.querySelectorAll('.gallery__photo-button');
-// const popupOpenPhoto = document.querySelector('.popup__open-photo');
-
-// galleryPhotoButtons.forEach(galleryPhotoButton => galleryPhotoButton.addEventListener('click', function() {
-//     console.log('I ve been wide-opened');    
-    
-//     popupOpenPhoto.classList.add('popup_opened');
-
-
-//     const galleryCaption = galleryContainer.querySelector('.gallery__caption');
-//     const popupPhotoCaption = galleryContainer.querySelector('.popup__photo-caption');
-//     const galleryPhoto = galleryContainer.querySelector('.gallery__photo');
-//     const popupPhoto = galleryContainer.querySelector('.popup__photo');
-    
-//     popupPhotoCaption.textContent = galleryCaption.textContent;
-//     popupPhoto.src = galleryPhoto.src;
-//     popupPhoto.alt = galleryCaption.textContent;
-// }));
-
-// directors.forEach(function (element) {
-    //     const directorElement = directorTemplate.cloneNode(true);
-      
-    //     directorElement.querySelector('.directors__name').textContent = element.name;
-    //     directorElement.querySelector('.directors__description').textContent = element.career;
-    //     directorElement.querySelector('.directors__films').href = element.films;
-      
-    //     directorsList.append(directorElement)
-    //   })
-
-
-
-
-
-
-
-// Like button
-// const likeButtons = document.querySelectorAll('.gellary__like-button');
-
-// likeButtons.forEach(likeButton => likeButton.addEventListener('click', function() {
-//     console.log('I ve been liked');
-//     likeButton.classList.toggle('gellary__like-button_active');
-// }));
-
-// Delete button
-// const deleteButtons = document.querySelectorAll('.gallery__delete-button');
-
-// deleteButtons.forEach(deleteButton => deleteButton.addEventListener('click', function() {
-//     console.log('I ve been deleted');
-//     const galleryItem = document.querySelector('.gallery__item');
-//     galleryItem.remove();
-// }));
-
-
-// Photo wide-open
-// const galleryPhotoButtons = document.querySelectorAll('.gallery__photo-button');
-// const popupsOpenPhoto = document.querySelectorAll('.popup__open-photo');
-
-// galleryPhotoButtons.forEach(galleryPhotoButton => galleryPhotoButton.addEventListener('click', function() {
-//     console.log('I ve been wide-opened');    
-//     popupsOpenPhoto.forEach(function(popupOpenPhoto) {
-//         popupOpenPhoto.classList.add('popup_opened');
-//     });
-
-//     const galleryCaption = document.querySelector('.gallery__caption');
-//     const popupPhotoCaption = document.querySelector('.popup__photo-caption');
-//     const galleryPhoto = document.querySelector('.gallery__photo');
-//     const popupPhoto = document.querySelector('.popup__photo');
-    
-//     popupPhotoCaption.textContent = galleryCaption.textContent;
-//     popupPhoto.src = galleryPhoto.src;
-//     popupPhoto.alt = galleryCaption.textContent;
-// }));
-
-
-
-
-
