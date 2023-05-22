@@ -10,7 +10,7 @@
 <body class="root">
     
     <div class="page">
-        <div class="popup popup__type_edit">
+        <div class="popup popup__type_edit appearance">
             <div class="popup__background"></div>
             <form class="popup__container popup__container_type_edit" name="form1">
                 <button class="button" type="button">
@@ -25,26 +25,26 @@
            </form>
        </div>
 
-       <div class="popup popup__type_add">
+       <div class="popup popup__type_add appearance">
             <div class="popup__background"></div>
             <form class="popup__container popup__container_type_add" name="form2">
                 <button class="button" type="button">
-                    <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
+                    <img class="popup__button-close" id="close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
                 <h3 class="popup__title">Новое место</h3>
                 <fieldset class="popup__input-container">
                     <input type="text" class="popup__input popup__input_value_place" placeholder="Название" value="">
                     <input type="text" class="popup__input popup__input_value_link" placeholder="Ссылка на картинку" value="">
                 </fieldset>
-                <button class="button popup__button-save popup__button-create" type="submit">Создать</button>
+                <button class="button popup__button-save" id="close" type="submit">Создать</button>
             </form>
         </div>
 
-        <div class="popup popup__type_open-photo">
+        <div class="popup popup__type_open-photo appearance">
             <div class="popup__background popup__background_photo-active"></div>
             <div  class="popup__container popup__container_photo-active">
                 <button class="button" type="button">
-                    <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
+                    <img class="popup__button-close" id="close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
                 </button>
                 <img class="popup__photo" src="" alt="">
                 <h2 class="popup__photo-caption"></h2>
@@ -83,8 +83,8 @@
     
     <template id="gallery__template">
         <figure class="gallery__item">
-            <button class="button gallery__photo-button" type="button" id="photo">
-                <img class="gallery__photo" src="" alt="">
+            <button class="button gallery__photo-button" type="button">
+                <img class="gallery__photo" src="" alt="" id="photo">
             </button>
             <button class="button" type="button">
                 <img  class="gallery__delete-button" src="images/Trash.svg" alt="Кнопка &quot;Удалить&quot;">
