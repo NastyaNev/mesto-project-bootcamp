@@ -1,16 +1,16 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
-@import url(../blocks/appearance/appearance.css);
 
 @import url(../blocks/root/root.css);
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/preload/preload.css);
 @import url(../blocks/popup/__background/popup__background.css);
-@import url(../blocks/popup/__background/_photo-active/popup__background_photo-active.css);
+@import url(../blocks/popup/__background/_open-photo/popup__background_open-photo.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__container/_photo-active/popup__container_photo-active.css);
+@import url(../blocks/popup/__container/_open-photo/popup__container_open-photo.css);
 @import url(../blocks/button/button.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/__photo/popup__photo.css);

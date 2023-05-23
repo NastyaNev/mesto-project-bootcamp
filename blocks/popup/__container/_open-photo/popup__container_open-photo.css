@@ -1,4 +1,4 @@
-.popup__container_photo-active {
+.popup__container_open-photo {
     display: flex;
     flex-direction: column;
     left: 50%;
@@ -12,7 +12,7 @@
 }
 
 @media (max-width: 767px) {
-    .popup__container_photo-active {
+    .popup__container_open-photo {
         transform: translate(-50%, 36%);
         min-height: 120px;
     }

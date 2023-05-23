@@ -1,20 +1,15 @@
-const editButton = document.querySelector('.profile-header__edit-button');
-const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup__type_edit');
-// const closeButton = document.querySelector('.popup__button-close');
-const closeButtons = document.querySelectorAll('.popup__button-close');
-const formElementEdit = document.querySelector('.popup__container_type_edit');
+const popupAdd = document.querySelector('.popup__type_add');
+const popupOpenPhoto = document.querySelector('.popup__type_open-photo');
 const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_info');
+const editButton = document.querySelector('.profile-header__edit-button');
 const addButton = document.querySelector('.profile-header__add-button');
-const popupAdd = document.querySelector('.popup__type_add');
-const popupImageOpen = document.querySelector('.popup__type_open-photo');
-const popupOpenPhoto = document.querySelector('.popup__type_open-photo');
-const submits = document.querySelectorAll("button[type=submit]");
 const addForm = document.querySelector('.popup__container_type_add');
 const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
 const galleryContainer = document.querySelector('.gallery');
+const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
 const initialCards = [
     {
       name: 'Пушкин',
@@ -42,11 +37,10 @@ const initialCards = [
     }
   ];
 
-const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
-
 function handlePopupOpen(popup) {
   popup.classList.add('popup_opened');
-
+  popup.classList.remove('preload');
+  
   console.log('I ve been clicked');
 }
 
@@ -55,9 +49,11 @@ function handlePopupClose(popup) {
 
   closeButton.addEventListener('click', () => {
     popup.classList.remove('popup_opened');
-  
+
     console.log('I ve been closed');
   });
+  
+  
 }
 
 function handleFormSubmit(popup, onSubmit)  {
@@ -68,29 +64,10 @@ function handleFormSubmit(popup, onSubmit)  {
   
     onSubmit();
 
-    popup.classList.remove('popup_opened');   
+    popup.classList.add('disappearance');   
+    popup.classList.remove('popup_opened');
   }); 
 }
-
-// function handleFormSubmitAdd(evt) {
-//   evt.preventDefault();
-//   const newGalleryElement = addGalleryElement(placeInput.value, linkInput.value)
-//   galleryContainer.prepend(newGalleryElement);
-//   addForm.reset();
-
-//   console.log('I ve been added');
-// }
-
-// function handleFormSubmitEdit(evt, popup) {
-//     evt.preventDefault();
-  
-//     document.querySelector('.profile-header__user-name').textContent = nameInput.value;
-//     document.querySelector('.profile-header__user-description').textContent = jobInput.value;
-
-//     handlePopupClose(popup);
-
-//     console.log('I ve been saved');
-// }
 
 function handleDeleteElement(element) {
     element.remove();
@@ -104,8 +81,8 @@ function handleLikeElement(element) {
     console.log('I ve been liked');
 }
 
-function handlePopupImageOpen(name, link) {
-  handlePopupOpen(popupImageOpen);
+function handlePopupOpenPhoto(name, link) {
+  handlePopupOpen(popupOpenPhoto);
 
   popupOpenPhoto.querySelector('.popup__photo').src = link;
   popupOpenPhoto.querySelector('.popup__photo-caption').textContent = name;
@@ -127,7 +104,7 @@ function addGalleryElement(name, link) {
 
     deleteButton.addEventListener('click', () => handleDeleteElement(galleryElement));
     likeButton.addEventListener('click', () => handleLikeElement(galleryElement));
-    openWideButton.addEventListener('click', () => handlePopupImageOpen(name, link));
+    openWideButton.addEventListener('click', () => handlePopupOpenPhoto(name, link));
 
     return galleryElement;
 }
@@ -139,14 +116,12 @@ initialCards.forEach(function (element) {
 
 editButton.addEventListener('click', () => handlePopupOpen(popupEdit));
 addButton.addEventListener('click', () => handlePopupOpen(popupAdd));
-// formElementEdit.addEventListener('submit', () => handleFormSubmitEdit); 
-// addForm.addEventListener('submit', handleFormSubmitAdd);
 
 handleFormSubmit(popupEdit, () => {
   document.querySelector('.profile-header__user-name').textContent = nameInput.value;
   document.querySelector('.profile-header__user-description').textContent = jobInput.value;
 
-  console.log('I ve been saved');
+  console.log('I ve been saved and edited');
 });
 
 handleFormSubmit(popupAdd, () => {
@@ -154,20 +129,10 @@ handleFormSubmit(popupAdd, () => {
   galleryContainer.prepend(newGalleryElement);
   addForm.reset();
 
-  console.log('I ve been added');
+  console.log('I ve been saved and added');
 });
 
 handlePopupClose(popupEdit);
 handlePopupClose(popupAdd);
-handlePopupClose(popupImageOpen);
-
-// popups.forEach(function (popup) {
-//   const closeButton = popup.querySelector('.popup__button-close');
-  
-//   closeButton.addEventListener('click', () => {
-//     popup.classList.remove('popup_opened');
-  
-//     console.log('I ve been closed');
-//   });
-// });
+handlePopupClose(popupOpenPhoto);
 
