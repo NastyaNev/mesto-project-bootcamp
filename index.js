@@ -61,6 +61,13 @@ function closePopup(elem) {
   closeBackground.addEventListener('click', () => {
     handleClosePopup(elem);
   });
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      handleClosePopup(elem);
+      console.log("I've been pressed");
+    }
+  });
 }
 
 function handleFormSubmit(elem, onSubmit)  {
