@@ -52,8 +52,13 @@ function handleClosePopup(elem) {
 
 function closePopup(elem) {
   const closeButton = elem.querySelector('.popup__button-close');
+  const closeBackground = elem.querySelector('.popup__background');
 
   closeButton.addEventListener('click', () => {
+    handleClosePopup(elem);
+  });
+
+  closeBackground.addEventListener('click', () => {
     handleClosePopup(elem);
   });
 }
