@@ -58,7 +58,7 @@ function closePopup(elem) {
     handleClosePopup(elem);
   });
 
-  closeBackground.addEventListener('click', () => {
+  closeBackground.addEventListener('mousedown', () => {
     handleClosePopup(elem);
   });
 

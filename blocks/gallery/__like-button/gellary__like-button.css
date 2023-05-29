@@ -1,7 +1,3 @@
-.gellary__like-button {
-    margin-left: 20px;
-}
-
 .gellary__like-button:hover {
     opacity: 0.5;
 }
