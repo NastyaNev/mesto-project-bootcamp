@@ -1,6 +1,6 @@
 const popupEdit = document.querySelector('.popup__type_edit');
 const popupAdd = document.querySelector('.popup__type_add');
-const popupOpenPhoto = document.querySelector('.popup__type_open-photo');
+const popupSeePhoto = document.querySelector('.popup__type_open-photo');
 const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_info');
 const editButton = document.querySelector('.profile-header__edit-button');
@@ -37,34 +37,34 @@ const initialCards = [
     }
   ];
 
-function handlePopupOpen(elem) {
+function openPopup(elem) {
   elem.classList.add('popup_opened');
   elem.classList.remove('preload');
   
   console.log('I ve been clicked');
 }
 
-function handleClosePopup(elem) {
+function closePopup(elem) {
   elem.classList.remove('popup_opened');
 
   console.log('I ve been closed');
 }
 
-function closePopup(elem) {
+function handleClosePopup(elem) {
   const closeButton = elem.querySelector('.popup__button-close');
   const closeBackground = elem.querySelector('.popup__background');
 
   closeButton.addEventListener('click', () => {
-    handleClosePopup(elem);
+    closePopup(elem);
   });
 
   closeBackground.addEventListener('mousedown', () => {
-    handleClosePopup(elem);
+    closePopup(elem);
   });
 
   document.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
-      handleClosePopup(elem);
+      closePopup(elem);
       console.log("I've been pressed");
     }
   });
@@ -78,28 +78,28 @@ function handleFormSubmit(elem, onSubmit)  {
   
     onSubmit();
  
-    handleClosePopup(elem);
+    closePopup(elem);
   }); 
 }
 
-function handleDeleteElement(element) {
+function deleteElement(element) {
     element.remove();
 
     console.log('I ve been deleted');
 }
 
-function handleLikeElement(element) {
+function likeElement(element) {
     element.querySelector('.gellary__like-button').classList.toggle('gellary__like-button_active');
 
     console.log('I ve been liked');
 }
 
-function handlePopupOpenPhoto(name, link) {
-  handlePopupOpen(popupOpenPhoto);
+function openPhotoPopup(name, link) {
+  openPopup(popupSeePhoto);
 
-  popupOpenPhoto.querySelector('.popup__photo').src = link;
-  popupOpenPhoto.querySelector('.popup__photo-caption').textContent = name;
-  popupOpenPhoto.querySelector('.popup__photo').alt = name;
+  popupSeePhoto.querySelector('.popup__photo').src = link;
+  popupSeePhoto.querySelector('.popup__photo-caption').textContent = name;
+  popupSeePhoto.querySelector('.popup__photo').alt = name;
 
   console.log('I ve been wide-opened');
 }
@@ -115,9 +115,9 @@ function addGalleryElement(name, link) {
     const likeButton = galleryElement.querySelector('.gellary__like-button');
     const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
-    deleteButton.addEventListener('click', () => handleDeleteElement(galleryElement));
-    likeButton.addEventListener('click', () => handleLikeElement(galleryElement));
-    openWideButton.addEventListener('click', () => handlePopupOpenPhoto(name, link));
+    deleteButton.addEventListener('click', () => deleteElement(galleryElement));
+    likeButton.addEventListener('click', () => likeElement(galleryElement));
+    openWideButton.addEventListener('click', () => openPhotoPopup(name, link));
 
     return galleryElement;
 }
@@ -127,8 +127,8 @@ initialCards.forEach(function (element) {
     galleryContainer.append(newGalleryElement);
 });
 
-editButton.addEventListener('click', () => handlePopupOpen(popupEdit));
-addButton.addEventListener('click', () => handlePopupOpen(popupAdd));
+editButton.addEventListener('click', () => openPopup(popupEdit));
+addButton.addEventListener('click', () => openPopup(popupAdd));
 
 handleFormSubmit(popupEdit, () => {
   document.querySelector('.profile-header__user-name').textContent = nameInput.value;
@@ -145,7 +145,7 @@ handleFormSubmit(popupAdd, () => {
   console.log('I ve been saved and added');
 });
 
-closePopup(popupEdit);
-closePopup(popupAdd);
-closePopup(popupOpenPhoto);
+handleClosePopup(popupEdit);
+handleClosePopup(popupAdd);
+handleClosePopup(popupSeePhoto);
 
