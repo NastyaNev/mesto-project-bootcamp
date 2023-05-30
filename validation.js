@@ -3,23 +3,25 @@ function handleSubmitValid(evt) {
   
 }
 
-function showError(input, errorMessage) {
+function showError(input, settings, errorMessage) {
   const spanId = `error-${input.id}`;
   const spanError = document.getElementById(spanId);
+  input.classList.add(settings.inputErrorClass);
   spanError.textContent = errorMessage;
 }
 
-function hideError(input) {
+function hideError(input, settings) {
   const spanId = `error-${input.id}`;
   const spanError = document.getElementById(spanId);
+  input.classList.remove(settings.inputErrorClass);
   spanError.textContent = '';
 }
 
-function checkValid(input) {
+function checkValid(input, settings) {
   if(input.validity.valid) {
-    hideError(input);
+    hideError(input, settings);
   } else {
-    showError(input, input.validationMessage);
+    showError(input, settings, input.validationMessage);
   }
 }
 
@@ -39,23 +41,23 @@ function disableButton(submitButton) {
   submitButton.disabled = true;
 }
 
-function setEventListeners(form) {
-    const inputList = form.querySelectorAll('.popup__input');
-    const submitButton = form.querySelector('.popup__button-save');
+function setEventListeners(form, settings) {
+    const inputList = form.querySelectorAll(settings.inputSelector);
+    const submitButton = form.querySelector(settings.buttonSelector);
     checkFormValidity(submitButton, form);
     console.log("Validity checked 1");
     inputList.forEach(input => {
         input.addEventListener('input', () => {
-            checkValid(input);
+            checkValid(input, settings);
             checkFormValidity(submitButton, form);
             console.log("Validity checked 2");
         });
     });
 }
 
-function enableValidation() {
-    const formList = document.querySelectorAll('.form');
-    formList.forEach(form => {setEventListeners(form)});
+function enableValidation(settings) {
+    const formList = document.querySelectorAll(settings.formSelector);
+    formList.forEach(form => {setEventListeners(form, settings)});
 }
 
 

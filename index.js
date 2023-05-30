@@ -155,4 +155,11 @@ handleClosePopup(popupEdit);
 handleClosePopup(popupAdd);
 handleClosePopup(popupSeePhoto);
 
-enableValidation();
+const validitySettings = {
+  formSelector: '.form',
+  inputSelector:'.popup__input',
+  buttonSelector: '.popup__button-save',
+  inputErrorClass: 'popup__input_invalid'
+}
+
+enableValidation(validitySettings);
