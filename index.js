@@ -156,3 +156,58 @@ handleClosePopup(popupEdit);
 handleClosePopup(popupAdd);
 handleClosePopup(popupSeePhoto);
 
+const editForm = document.forms.form1;
+const editFormName = editForm.usName;
+
+function handleSubmitValid(evt) {
+  evt.preventDefault();
+  
+}
+
+function showError(input, errorMessage) {
+  const spanId = `error-${input.id}`;
+  const spanError = document.getElementById(spanId);
+  spanError.textContent = errorMessage;
+}
+
+function hideError(input) {
+  const spanId = `error-${input.id}`;
+  const spanError = document.getElementById(spanId);
+  spanError.textContent = '';
+}
+
+function checkValid(input) {
+  if(input.validity.valid) {
+    hideError(input);
+  } else {
+    showError(input, input.validationMessage);
+  }
+}
+
+function checkFormValidity(submitButton) {
+  if(editForm.checkValidity()) {
+    enableButon(submitButton);
+  } else {
+    disableButton(submitButton);
+  }
+}
+
+function enableButon(submitButton) {
+  submitButton.disabled = false;
+}
+
+function disableButton(submitButton) {
+  submitButton.disabled = true;
+}
+
+const inputList = document.querySelectorAll('.popup__input');
+const submitButton = document.querySelector('.popup__button-save');
+checkFormValidity(submitButton);
+inputList.forEach(input => {
+  input.addEventListener('input', () => {
+    checkValid(input);
+    checkFormValidity(submitButton);
+  });
+});
+
+editForm.addEventListener('submit', handleSubmitValid);

@@ -58,14 +58,16 @@
 
     <div class="popup popup__type_edit preload">
         <div class="popup__background"></div>
-        <form class="popup__container popup__container_type_edit" name="form1">
+        <form class="popup__container popup__container_type_edit" name="form1" novalidate>
             <button class="button" type="button">
                 <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
             </button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <fieldset class="popup__input-container">
-                <input type="text" class="popup__input popup__input_value_name" placeholder="Имя" value="Жак-Ив Кусто" required>
-                <input type="text" class="popup__input popup__input_value_info" placeholder="О себе" value="Исследователь океана" required>
+                <input type="text" id="usName" class="popup__input popup__input_value_name" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
+                <span id="error-usName" class="error"></span>
+                <input type="text" id="usInfo" class="popup__input popup__input_value_info" placeholder="О себе" value="Исследователь океана" required minlength="2" maxlength="200">
+                <span id="error-usInfo" class="error"></span>
             </fieldset>
             <button class="button popup__button-save" type="submit">Сохранить</button>
        </form>
@@ -73,14 +75,16 @@
 
    <div class="popup popup__type_add preload">
         <div class="popup__background"></div>
-        <form class="popup__container popup__container_type_add" name="form2">
+        <form class="popup__container popup__container_type_add" name="form2" novalidate>
             <button class="button" type="button">
                 <img class="popup__button-close" src="images/Close-Icon.svg" alt="Кнопка &quot;Закрыть&quot;">
             </button>
             <h3 class="popup__title">Новое место</h3>
             <fieldset class="popup__input-container">
-                <input type="text" class="popup__input popup__input_value_place" placeholder="Название" value="">
-                <input type="text" class="popup__input popup__input_value_link" placeholder="Ссылка на картинку" value="">
+                <input type="text" id="itemPlace" class="popup__input popup__input_value_place" placeholder="Название" value="" required minlength="2" maxlength="30">
+                <span id="error-itemPlace" class="error"></span>
+                <input type="url" id="itemLink" class="popup__input popup__input_value_link" placeholder="Ссылка на картинку" value="" required>
+                <span id="error-itemLink" class="error"></span>
             </fieldset>
             <button class="button popup__button-save" type="submit">Создать</button>
         </form>
@@ -97,6 +101,7 @@
         </div>
     </div>
 
+    <script src="validation.js" ></script>
     <script src="index.js" ></script>
 </body>
 </html>
