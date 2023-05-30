@@ -1,7 +1,8 @@
 .popup__container {
     position: fixed;
     left: 50%;
-    transform: translate(-50%, 60%);
+    top: 23%;
+    transform: translate(-50%, 0);
     background: #FFFFFF;
     border-radius: 10px;
     color:#000000;
@@ -12,6 +13,6 @@
 @media (max-width: 767px) {
     .popup__container {
         padding: 0 22px 25px 22px;
-        transform: translate(-50%, 39%);
+        top: 15%;
     }
 }
