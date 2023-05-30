@@ -163,3 +163,11 @@ const validitySettings = {
 }
 
 enableValidation(validitySettings);
+
+function handleSubmitForm(evt) {
+  evt.preventDefault();
+  evt.target.reset();
+  disableButton(evt.submitter);
+}
+
+document.forms.form1.addEventListener('submit', handleSubmitForm);

@@ -1,8 +1,3 @@
-function handleSubmitValid(evt) {
-  evt.preventDefault();
-  
-}
-
 function showError(input, settings, errorMessage) {
   const spanId = `error-${input.id}`;
   const spanError = document.getElementById(spanId);
