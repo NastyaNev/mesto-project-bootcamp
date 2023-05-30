@@ -10,6 +10,10 @@ const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
 const galleryContainer = document.querySelector('.gallery');
 const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
+const photoLink = popupSeePhoto.querySelector('.popup__photo');
+const photoName = popupSeePhoto.querySelector('.popup__photo-caption');
+const userName = document.querySelector('.profile-header__user-name');
+const userDescription = document.querySelector('.profile-header__user-description');
 const initialCards = [
     {
       name: 'Пушкин',
@@ -97,9 +101,9 @@ function likeElement(element) {
 function openPhotoPopup(name, link) {
   openPopup(popupSeePhoto);
 
-  popupSeePhoto.querySelector('.popup__photo').src = link;
-  popupSeePhoto.querySelector('.popup__photo-caption').textContent = name;
-  popupSeePhoto.querySelector('.popup__photo').alt = name;
+  photoLink.src = link;
+  photoName.textContent = name;
+  photoLink.alt = name;
 
   console.log('I ve been wide-opened');
 }
@@ -107,9 +111,12 @@ function openPhotoPopup(name, link) {
 function addGalleryElement(name, link) {
     const galleryElement = galleryTemplate.cloneNode(true);
 
-    galleryElement.querySelector('.gallery__caption').textContent = name;
-    galleryElement.querySelector('.gallery__photo').src = link;
-    galleryElement.querySelector('.gallery__photo').alt = name;
+    const galaryLink = galleryElement.querySelector('.gallery__photo');
+    const galaryName = galleryElement.querySelector('.gallery__caption');
+
+    galaryLink.src = link;
+    galaryName.textContent = name;
+    galaryLink.alt = name;
 
     const deleteButton = galleryElement.querySelector('.gallery__delete-button');
     const likeButton = galleryElement.querySelector('.gellary__like-button');
@@ -131,10 +138,10 @@ editButton.addEventListener('click', () => openPopup(popupEdit));
 addButton.addEventListener('click', () => openPopup(popupAdd));
 
 handleFormSubmit(popupEdit, () => {
-  document.querySelector('.profile-header__user-name').textContent = nameInput.value;
-  document.querySelector('.profile-header__user-description').textContent = jobInput.value;
+  userName.textContent = nameInput.value;
+  userDescription.textContent = jobInput.value;
 
-  console.log('I ve been saved and edited');
+  console.log("I've been saved and edited");
 });
 
 handleFormSubmit(popupAdd, () => {
@@ -142,7 +149,7 @@ handleFormSubmit(popupAdd, () => {
   galleryContainer.prepend(newGalleryElement);
   addForm.reset();
 
-  console.log('I ve been saved and added');
+  console.log("I've been saved and added");
 });
 
 handleClosePopup(popupEdit);
