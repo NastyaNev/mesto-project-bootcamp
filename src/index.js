@@ -12,6 +12,7 @@ const photoLink = popupSeePhoto.querySelector('.popup__photo');
 const photoName = popupSeePhoto.querySelector('.popup__photo-caption');
 const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
+const popups = document.querySelectorAll('.popup');
 
 function handleFormSubmit(elem, onSubmit)  {
   const form = elem.querySelector('.popup__container');
@@ -63,9 +64,8 @@ handleFormSubmit(popupAdd, () => {
   console.log("I've been saved and added");
 });
 
-handleClosePopup(popupEdit);
-handleClosePopup(popupAdd);
-handleClosePopup(popupSeePhoto);
+popups.forEach(popup => handleClosePopup(popup));
+popups.forEach(popup => handleCloseByBackground(popup));
 
 const validitySettings = {
   formSelector: '.form',
@@ -86,5 +86,5 @@ document.forms.form2.addEventListener('submit', handleCleanForm);
 
 import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
-import { handleClosePopup, openPopup, closePopup } from './components/modal';
+import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
