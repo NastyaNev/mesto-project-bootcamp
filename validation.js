@@ -40,12 +40,12 @@ function setEventListeners(form, settings) {
     const inputList = form.querySelectorAll(settings.inputSelector);
     const submitButton = form.querySelector(settings.buttonSelector);
     checkFormValidity(submitButton, form);
-    console.log("Validity checked 1");
+    console.log("Validity check 1");
     inputList.forEach(input => {
         input.addEventListener('input', () => {
             checkValid(input, settings);
             checkFormValidity(submitButton, form);
-            console.log("Validity checked 2");
+            console.log("Validity check 2");
         });
     });
 }
