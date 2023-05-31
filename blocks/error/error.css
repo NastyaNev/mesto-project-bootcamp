@@ -5,3 +5,9 @@
     color: #FF0000;
     min-height: 30px;
 }
+
+@media (max-width: 767px) {
+    .error {
+        min-height: 45px;
+    }
+}
