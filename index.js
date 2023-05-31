@@ -134,8 +134,18 @@ initialCards.forEach(function (element) {
     galleryContainer.append(newGalleryElement);
 });
 
-editButton.addEventListener('click', () => openPopup(popupEdit));
-addButton.addEventListener('click', () => openPopup(popupAdd));
+editButton.addEventListener('click', () => {
+  openPopup(popupEdit);
+  nameInput.value = userName.textContent;
+  jobInput.value = userDescription.textContent;
+});
+
+addButton.addEventListener('click', () => {
+  openPopup(popupAdd);
+  addForm.reset();
+  hideError(placeInput, validitySettings);
+  hideError(linkInput, validitySettings);
+});
 
 handleFormSubmit(popupEdit, () => {
   userName.textContent = nameInput.value;
@@ -147,7 +157,6 @@ handleFormSubmit(popupEdit, () => {
 handleFormSubmit(popupAdd, () => {
   const newGalleryElement = addGalleryElement(placeInput.value, linkInput.value)
   galleryContainer.prepend(newGalleryElement);
-  addForm.reset();
   console.log("I've been saved and added");
 });
 
@@ -164,10 +173,10 @@ const validitySettings = {
 
 enableValidation(validitySettings);
 
-function handleSubmitForm(evt) {
+function handleCleanForm(evt) {
   evt.preventDefault();
   evt.target.reset();
   disableButton(evt.submitter);
 }
 
-document.forms.form1.addEventListener('submit', handleSubmitForm);
+document.forms.form2.addEventListener('submit', handleCleanForm);
