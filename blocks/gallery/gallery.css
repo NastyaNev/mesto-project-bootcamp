@@ -6,7 +6,7 @@
     justify-items: center;
     width: 880px;
     text-align: justify;
-    min-height: calc(100vw/(1280/361));;
+    min-height: 361px;
 }
 
 @media (max-width: 1279px) {
