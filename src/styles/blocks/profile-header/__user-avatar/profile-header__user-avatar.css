@@ -1,4 +1,6 @@
 .profile-header__user-avatar {
     border-radius: 50%;
     height: 120px;
+    width: 120px;
+    object-fit: cover;
 }

@@ -12,19 +12,20 @@ const photoLink = popupSeePhoto.querySelector('.popup__photo');
 const photoName = popupSeePhoto.querySelector('.popup__photo-caption');
 const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
+const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
 
-function handleFormSubmit(elem, onSubmit)  {
+function handleFormSubmit(elem, onSubmit) {
   const form = elem.querySelector('.popup__container');
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  
+
     onSubmit();
- 
+
     closePopup(elem);
     disableButton(evt.submitter);
-  }); 
+  });
 }
 
 export function openPhotoPopup(name, link) {
@@ -71,14 +72,25 @@ popups.forEach(popup => handleCloseByBackground(popup));
 
 const validitySettings = {
   formSelector: '.form',
-  inputSelector:'.popup__input',
+  inputSelector: '.popup__input',
   buttonSelector: '.popup__button-save',
   inputErrorClass: 'popup__input_invalid'
 }
 
 enableValidation(validitySettings);
 
+getUserInfo()
+  .then(res => {
+    userName.textContent = res.name;
+    userDescription.textContent = res.about;
+    userPhoto.src = res.avatar;
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
 import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
+import { getUserInfo } from './components/api';
