@@ -54,10 +54,16 @@ addButton.addEventListener('click', () => {
 });
 
 handleFormSubmit(popupEdit, () => {
-  userName.textContent = nameInput.value;
-  userDescription.textContent = jobInput.value;
+  setUserInfo(nameInput.value, jobInput.value)
+    .then(res => {
+      userName.textContent = res.name;
+      userDescription.textContent = res.about;
 
-  console.log("I've been saved and edited");
+      console.log("I've been saved and edited");
+    })
+    .catch(err => {
+      console.log(err);
+    })
 });
 
 handleFormSubmit(popupAdd, () => {
@@ -99,4 +105,4 @@ import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
-import { getUserInfo, setCards } from './components/api';
+import { getUserInfo, setUserInfo, setCards } from './components/api';
