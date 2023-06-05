@@ -23,6 +23,7 @@ function handleFormSubmit(elem, onSubmit)  {
     onSubmit();
  
     closePopup(elem);
+    disableButton(evt.submitter);
   }); 
 }
 
@@ -61,6 +62,7 @@ handleFormSubmit(popupEdit, () => {
 handleFormSubmit(popupAdd, () => {
   const newGalleryElement = addGalleryElement(placeInput.value, linkInput.value)
   galleryContainer.prepend(newGalleryElement);
+
   console.log("I've been saved and added");
 });
 
@@ -75,14 +77,6 @@ const validitySettings = {
 }
 
 enableValidation(validitySettings);
-
-function handleCleanForm(evt) {
-  evt.preventDefault();
-  evt.target.reset();
-  disableButton(evt.submitter);
-}
-
-document.forms.form2.addEventListener('submit', handleCleanForm);
 
 import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
