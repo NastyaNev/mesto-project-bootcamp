@@ -9,24 +9,24 @@
 <body class="root">
     <div class="page">
         <header class="header content content_wide_mobile">
-            <img class="logo" src=<%=require('../images/logo.svg')%> alt="Логотип сервиса Место">
+            <img class="logo" src=<%=require('./images/logo.svg')%> alt="Логотип сервиса Место">
         </header>
 
         <main>
             <div class="profile-header content">
                 <div class="profile-header__user">
-                    <img class="profile-header__user-avatar" src=<%=require('../images/image.jpg')%> alt="Аватар">
+                    <img class="profile-header__user-avatar" src=<%=require('./images/image.jpg')%> alt="Аватар">
                     <div class="profile-header__user-info">
                         <h1 class="profile-header__user-name">Жак-Ив Кусто</h1>
                         <button class="button profile-header__edit-button" type="button">
-                            <img class="profile-header__edit-button-pencil" src=<%=require('../images/Pencil.svg')%> alt="Кнопка &quot;Редактировать&quot;">
+                            <img class="profile-header__edit-button-pencil" src=<%=require('./images/Pencil.svg')%> alt="Кнопка &quot;Редактировать&quot;">
                         </button>
                         <p class="profile-header__user-description">Исследователь океана</p>
                     </div>
                 </div>
 
                 <button class="button profile-header__add-button" type="button">
-                    <img class="profile-header__add-button-plus" src=<%=require('../images/Plus.svg')%> alt="Кнопка &quot;Добвыить&quot;">
+                    <img class="profile-header__add-button-plus" src=<%=require('./images/Plus.svg')%> alt="Кнопка &quot;Добвыить&quot;">
                 </button>
             </div>
 
@@ -44,12 +44,12 @@
                 <img class="gallery__photo" src="" alt="" id="photo">
             </button>
             <button class="button gallery__delete-button" type="button">
-                <img src=<%=require('../images/Trash.svg')%> alt="Кнопка &quot;Удалить&quot;">
+                <img src=<%=require('./images/Trash.svg')%> alt="Кнопка &quot;Удалить&quot;">
             </button>
             <div class="gallery__caption-row">
                 <h2 class="gallery__caption"></h2>
                 <button class="button" type="button">
-                    <img class="gellary__like-button" src=<%=require('../images/Like.svg')%> alt="Кнопка &quot;Лайк&quot;">
+                    <img class="gellary__like-button" src=<%=require('./images/Like.svg')%> alt="Кнопка &quot;Лайк&quot;">
                 </button>
             </div>
         </figure>
@@ -59,7 +59,7 @@
         <div class="popup__background"></div>
         <form class="popup__container popup__container_type_edit form" name="form1" novalidate>
             <button class="button" type="button">
-                <img class="popup__button-close" src=<%=require('../images/Close-Icon.svg')%> alt="Кнопка &quot;Закрыть&quot;">
+                <img class="popup__button-close" src=<%=require('./images/Close-Icon.svg')%> alt="Кнопка &quot;Закрыть&quot;">
             </button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <fieldset class="popup__input-container">
@@ -76,7 +76,7 @@
         <div class="popup__background"></div>
         <form class="popup__container popup__container_type_add form" name="form2" novalidate>
             <button class="button" type="button">
-                <img class="popup__button-close" src=<%=require('../images/Close-Icon.svg')%> alt="Кнопка &quot;Закрыть&quot;">
+                <img class="popup__button-close" src=<%=require('./images/Close-Icon.svg')%> alt="Кнопка &quot;Закрыть&quot;">
             </button>
             <h3 class="popup__title">Новое место</h3>
             <fieldset class="popup__input-container">
@@ -93,7 +93,7 @@
         <div class="popup__background popup__background_open-photo"></div>
         <div class="popup__container popup__container_open-photo">
             <button class="button" type="button">
-                <img class="popup__button-close" src=<%=require('../images/Close-Icon.svg')%> alt="Кнопка &quot;Закрыть&quot;">
+                <img class="popup__button-close" src=<%=require('./images/Close-Icon.svg')%> alt="Кнопка &quot;Закрыть&quot;">
             </button>
             <img class="popup__photo" src="" alt="">
             <h2 class="popup__photo-caption"></h2>
