@@ -34,8 +34,8 @@ function deleteElement(element) {
     console.log("I've been deleted");
 }
 
-function likeElement(element) {
-    element.querySelector('.gellary__like-button').classList.toggle('gellary__like-button_active');
+function likeElement(likeButton) {
+    likeButton.classList.toggle('gellary__like-button_active');
 
     console.log("I've been liked");
 }
@@ -55,7 +55,7 @@ export function addGalleryElement(name, link) {
     const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
     deleteButton.addEventListener('click', () => deleteElement(galleryElement));
-    likeButton.addEventListener('click', () => likeElement(galleryElement));
+    likeButton.addEventListener('click', () => likeElement(likeButton));
     openWideButton.addEventListener('click', () => openPhotoPopup(name, link));
 
     return galleryElement;
