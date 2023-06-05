@@ -1,33 +1,6 @@
 export const galleryContainer = document.querySelector('.gallery');
 const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
 
-// const initialCards = [
-//   {
-//     name: 'Пушкин',
-//     link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Pushkin.jpg'
-//   },
-//   {
-//     name: 'Рускеала',
-//     link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Ruskeala.jpg'
-//   },
-//   {
-//     name: 'Санкт-Петербург',
-//     link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Saint-P.jpg'
-//   },
-//   {
-//     name: 'Тургояк',
-//     link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Tyrgoyak.jpg'
-//   },
-//   {
-//     name: 'Ульяновск',
-//     link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Ulyanovsk.jpg'
-//   },
-//   {
-//     name: 'Псков',
-//     link: 'https://nastyanpictures1.s3.eu-north-1.amazonaws.com/Pskov.jpg'
-//   }
-// ];
-
 function deleteElement(element) {
   element.remove();
 

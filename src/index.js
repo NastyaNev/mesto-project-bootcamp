@@ -61,10 +61,16 @@ handleFormSubmit(popupEdit, () => {
 });
 
 handleFormSubmit(popupAdd, () => {
-  const newGalleryElement = addGalleryElement(placeInput.value, linkInput.value)
-  galleryContainer.prepend(newGalleryElement);
+  setCards(placeInput.value, linkInput.value)
+    .then(res => {
+      const newGalleryElement = addGalleryElement(res.name, res.link);
+      galleryContainer.prepend(newGalleryElement);
 
-  console.log("I've been saved and added");
+      console.log("I've been saved and added");
+    })
+    .catch(err => {
+      console.log(err);
+    })
 });
 
 popups.forEach(popup => handleClosePopup(popup));
@@ -93,4 +99,4 @@ import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
-import { getUserInfo } from './components/api';
+import { getUserInfo, setCards } from './components/api';
