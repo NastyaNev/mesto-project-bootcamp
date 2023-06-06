@@ -13,7 +13,7 @@ export function hideError(input, settings) {
 }
 
 function checkValid(input, settings) {
-  if(input.validity.valid) {
+  if (input.validity.valid) {
     hideError(input, settings);
   } else {
     showError(input, settings, input.validationMessage);
@@ -21,7 +21,7 @@ function checkValid(input, settings) {
 }
 
 function checkFormValidity(submitButton, form) {
-  if(form.checkValidity()) {
+  if (form.checkValidity()) {
     enableButon(submitButton);
   } else {
     disableButton(submitButton);
@@ -37,22 +37,22 @@ export function disableButton(submitButton) {
 }
 
 function setEventListeners(form, settings) {
-    const inputList = form.querySelectorAll(settings.inputSelector);
-    const submitButton = form.querySelector(settings.buttonSelector);
-    checkFormValidity(submitButton, form);
-    console.log("Validity check 1");
-    inputList.forEach(input => {
-        input.addEventListener('input', () => {
-            checkValid(input, settings);
-            checkFormValidity(submitButton, form);
-            console.log("Validity check 2");
-        });
+  const inputList = form.querySelectorAll(settings.inputSelector);
+  const submitButton = form.querySelector(settings.buttonSelector);
+  checkFormValidity(submitButton, form);
+  console.log("Validity check 1");
+  inputList.forEach(input => {
+    input.addEventListener('input', () => {
+      checkValid(input, settings);
+      checkFormValidity(submitButton, form);
+      console.log("Validity check 2");
     });
+  });
 }
 
 export function enableValidation(settings) {
-    const formList = document.querySelectorAll(settings.formSelector);
-    formList.forEach(form => {setEventListeners(form, settings)});
+  const formList = document.querySelectorAll(settings.formSelector);
+  formList.forEach(form => { setEventListeners(form, settings) });
 }
 
 

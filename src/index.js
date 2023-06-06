@@ -17,6 +17,7 @@ const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
+const submitButton = document.querySelector('.popup__button-save');
 
 function handleFormSubmit(elem, onSubmit) {
   const form = elem.querySelector('.popup__container');
@@ -25,7 +26,6 @@ function handleFormSubmit(elem, onSubmit) {
     evt.preventDefault();
 
     onSubmit();
-
     closePopup(elem);
     disableButton(evt.submitter);
   });
@@ -39,6 +39,14 @@ export function openPhotoPopup(name, link) {
   photoLink.alt = name;
 
   console.log("I've been wide-opened");
+}
+
+function renderLoading(isLoading) {
+  if (isLoading) {
+    submitButton.textContent = "Сохранение...";
+  } else {
+    submitButton.textContent = "ёж";
+  }
 }
 
 editButton.addEventListener('click', () => {
@@ -60,7 +68,7 @@ editAvatarButton.addEventListener('click', () => {
   openPopup(popupAvatarEdit);
   linkAvatarInput.value = userPhoto.src;
   hideError(linkAvatarInput, validitySettings);
-})
+});
 
 handleFormSubmit(popupEdit, () => {
   setUserInfo(nameInput.value, jobInput.value)
@@ -73,9 +81,14 @@ handleFormSubmit(popupEdit, () => {
     .catch(err => {
       console.log(err);
     })
+    .finally(() => {
+      renderLoading(false);
+    })
 });
 
 handleFormSubmit(popupAdd, () => {
+  renderLoading(true);
+
   setCards(placeInput.value, linkInput.value)
     .then(res => {
       const newGalleryElement = addGalleryElement(res.name, res.link);
@@ -86,16 +99,22 @@ handleFormSubmit(popupAdd, () => {
     .catch(err => {
       console.log(err);
     })
+    .finally(() => {
+      renderLoading(false);
+    })
 });
 
 handleFormSubmit(popupAvatarEdit, () => {
   setUserAvatar(linkAvatarInput.value)
-  .then(res => {
-    userPhoto.src = res.avatar;
-  })
-  .catch(err => {
-    console.log(err);
-  })
+    .then(res => {
+      userPhoto.src = res.avatar;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false);
+    })
 });
 
 popups.forEach(popup => handleClosePopup(popup));
@@ -118,13 +137,19 @@ getUserInfo()
   .catch(err => {
     console.log(err);
   })
+  .finally(() => {
+    renderLoading(false);
+  })
 
-  getUserAvatar()
+getUserAvatar()
   .then(res => {
     userPhoto.src = res.avatar;
   })
   .catch(err => {
     console.log(err);
+  })
+  .finally(() => {
+    renderLoading(false);
   })
 
 import './styles/index.css';
