@@ -29,7 +29,10 @@
 
 @import url(../styles/blocks/profile-header/profile-header.css);
 @import url(../styles/blocks/profile-header/__user/profile-header__user.css);
+@import url(../styles/blocks/profile-header/__user-avatar-container/profile-header__user-avatar-container.css);
 @import url(../styles/blocks/profile-header/__user-avatar/profile-header__user-avatar.css);
+@import url(../styles/blocks/profile-header/__avatar-button/profile-header__avatar-button.css);
+@import url(../styles/blocks/profile-header/__avatar-button-pencil/profile-header__avatar-button-pencil.css);
 @import url(../styles/blocks/profile-header/__user-name/profile-header__user-name.css);
 @import url(../styles/blocks/profile-header/__user-info/profile-header__user-info.css);
 @import url(../styles/blocks/profile-header/__edit-button/profile-header__edit-button.css);

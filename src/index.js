@@ -1,13 +1,16 @@
 const popupEdit = document.querySelector('.popup__type_edit');
 const popupAdd = document.querySelector('.popup__type_add');
+const popupAvatarEdit = document.querySelector('.popup__type_edit-avatar');
 const popupSeePhoto = document.querySelector('.popup__type_open-photo');
 const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_info');
 const editButton = document.querySelector('.profile-header__edit-button');
 const addButton = document.querySelector('.profile-header__add-button');
+const editAvatarButton = document.querySelector('.profile-header__avatar-button');
 const addForm = document.querySelector('.popup__container_type_add');
 const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
+const linkAvatarInput = document.querySelector('.popup__input_value_link-avatar');
 const photoLink = popupSeePhoto.querySelector('.popup__photo');
 const photoName = popupSeePhoto.querySelector('.popup__photo-caption');
 const userName = document.querySelector('.profile-header__user-name');
@@ -53,6 +56,12 @@ addButton.addEventListener('click', () => {
   hideError(linkInput, validitySettings);
 });
 
+editAvatarButton.addEventListener('click', () => {
+  openPopup(popupAvatarEdit);
+  linkAvatarInput.value = userPhoto.src;
+  hideError(linkAvatarInput, validitySettings);
+})
+
 handleFormSubmit(popupEdit, () => {
   setUserInfo(nameInput.value, jobInput.value)
     .then(res => {
@@ -79,6 +88,16 @@ handleFormSubmit(popupAdd, () => {
     })
 });
 
+handleFormSubmit(popupAvatarEdit, () => {
+  setUserAvatar(linkAvatarInput.value)
+  .then(res => {
+    userPhoto.src = res.avatar;
+  })
+  .catch(err => {
+    console.log(err);
+  })
+});
+
 popups.forEach(popup => handleClosePopup(popup));
 popups.forEach(popup => handleCloseByBackground(popup));
 
@@ -95,6 +114,13 @@ getUserInfo()
   .then(res => {
     userName.textContent = res.name;
     userDescription.textContent = res.about;
+  })
+  .catch(err => {
+    console.log(err);
+  })
+
+  getUserAvatar()
+  .then(res => {
     userPhoto.src = res.avatar;
   })
   .catch(err => {
@@ -105,4 +131,4 @@ import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
-import { getUserInfo, setUserInfo, setCards } from './components/api';
+import { getUserInfo, setUserInfo, setCards, getUserAvatar, setUserAvatar } from './components/api';
