@@ -46,6 +46,7 @@
 @import url(../styles/blocks/gallery/__photo-button/gallery__photo-button.css);
 @import url(../styles/blocks/gallery/__photo/gallery__photo.css);
 @import url(../styles/blocks/gallery/__delete-button/gallery__delete-button.css);
+@import url(../styles/blocks/gallery/__delete-button/_active/gallery__delete-button_active.css);
 @import url(../styles/blocks/gallery/__caption-row/gallery__caption-row.css);
 @import url(../styles/blocks/gallery/__caption/gallery__caption.css);
 @import url(../styles/blocks/gallery/__like-button/gellary__like-button.css);

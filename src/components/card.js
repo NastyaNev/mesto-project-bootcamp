@@ -23,22 +23,33 @@ export function addGalleryElement(name, link) {
   galaryName.textContent = name;
   galaryLink.alt = name;
 
-  const deleteButton = galleryElement.querySelector('.gallery__delete-button');
+  addDeleteElement(galleryElement);
+
   const likeButton = galleryElement.querySelector('.gellary__like-button');
   const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
-  deleteButton.addEventListener('click', () => deleteElement(galleryElement));
   likeButton.addEventListener('click', () => likeElement(likeButton));
   openWideButton.addEventListener('click', () => openPhotoPopup(name, link));
 
   return galleryElement;
 }
 
+export function addDeleteElement(element) {
+  if (element.name === 'ftht') {
+  const deleteButton = element.querySelector('.gallery__delete-button');
+
+  deleteButton.classList.add('gallery__delete-button_active');
+  deleteButton.addEventListener('click', () => deleteElement(element));
+
+  console.log('Trash');
+  }
+}
+
 getCards()
   .then(res => {
     res.forEach(function (element) {
-    const newGalleryElement = addGalleryElement(element.name, element.link);
-    galleryContainer.append(newGalleryElement);
+      const newGalleryElement = addGalleryElement(element.name, element.link);
+      galleryContainer.append(newGalleryElement);
     });
   })
   .catch(err => {

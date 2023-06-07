@@ -26,6 +26,7 @@ function handleFormSubmit(elem, onSubmit) {
     evt.preventDefault();
 
     onSubmit();
+    
     closePopup(elem);
     disableButton(evt.submitter);
   });
@@ -88,7 +89,7 @@ handleFormSubmit(popupEdit, () => {
 
 handleFormSubmit(popupAdd, () => {
   renderLoading(true);
-
+  
   setCards(placeInput.value, linkInput.value)
     .then(res => {
       const newGalleryElement = addGalleryElement(res.name, res.link);
@@ -153,7 +154,7 @@ getUserAvatar()
   })
 
 import './styles/index.css';
-import { addGalleryElement, galleryContainer } from './components/card';
+import { addGalleryElement, galleryContainer, addDeleteElement } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
 import { getUserInfo, setUserInfo, setCards, getUserAvatar, setUserAvatar } from './components/api';
