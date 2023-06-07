@@ -8,6 +8,8 @@ const editButton = document.querySelector('.profile-header__edit-button');
 const addButton = document.querySelector('.profile-header__add-button');
 const editAvatarButton = document.querySelector('.profile-header__avatar-button');
 const addForm = document.querySelector('.popup__container_type_add');
+const editAvatarForm = document.querySelector('.popup__container_type_edit-avatar');
+const editForm = document.querySelector('.popup__container_type_edit');
 const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
 const linkAvatarInput = document.querySelector('.popup__input_value_link-avatar');
@@ -19,19 +21,6 @@ const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
 const submitButton = document.querySelector('.popup__button-save');
 
-function handleFormSubmit(elem, onSubmit) {
-  const form = elem.querySelector('.popup__container');
-
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-
-    onSubmit();
-    
-    closePopup(elem);
-    disableButton(evt.submitter);
-  });
-}
-
 export function openPhotoPopup(name, link) {
   openPopup(popupSeePhoto);
 
@@ -40,14 +29,6 @@ export function openPhotoPopup(name, link) {
   photoLink.alt = name;
 
   console.log("I've been wide-opened");
-}
-
-function renderLoading(isLoading) {
-  if (isLoading) {
-    submitButton.textContent = "Сохранение...";
-  } else {
-    submitButton.textContent = "ёж";
-  }
 }
 
 editButton.addEventListener('click', () => {
@@ -67,33 +48,50 @@ addButton.addEventListener('click', () => {
 
 editAvatarButton.addEventListener('click', () => {
   openPopup(popupAvatarEdit);
-  linkAvatarInput.value = userPhoto.src;
+  editAvatarForm.reset();
   hideError(linkAvatarInput, validitySettings);
 });
 
-handleFormSubmit(popupEdit, () => {
-  setUserInfo(nameInput.value, jobInput.value)
-    .then(res => {
-      userName.textContent = res.name;
-      userDescription.textContent = res.about;
+function handleFormSubmit(popup, onSubmit) {
+  const form = popup.querySelector('.popup__container');
 
-      console.log("I've been saved and edited");
-    })
-    .catch(err => {
-      console.log(err);
-    })
-    .finally(() => {
-      renderLoading(false);
-    })
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    onSubmit(evt);
+  });
+}
+
+handleFormSubmit(popupEdit, (event) => {
+  event.submitter.textContent = 'Сохранение...';
+
+  setUserInfo(nameInput.value, jobInput.value)
+  .then(res => {
+    userName.textContent = res.name;
+    userDescription.textContent = res.about;
+
+    closePopup(popupEdit);
+    disableButton(event.submitter);
+
+    console.log("I've been saved and edited");
+  })
+  .catch(err => {
+    console.log(err);
+  })
+  .finally(() => {
+    event.submitter.textContent = 'Сохранить';
+  })
 });
 
-handleFormSubmit(popupAdd, () => {
-  renderLoading(true);
-  
+handleFormSubmit(popupAdd, (event) => {
+  event.submitter.textContent = 'Сохранение...';
+
   setCards(placeInput.value, linkInput.value)
     .then(res => {
       const newGalleryElement = addGalleryElement(res.name, res.link);
       galleryContainer.prepend(newGalleryElement);
+
+      closePopup(popupAdd);
+      disableButton(event.submitter);
 
       console.log("I've been saved and added");
     })
@@ -101,20 +99,25 @@ handleFormSubmit(popupAdd, () => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false);
+      event.submitter.textContent = 'Создать';
     })
 });
 
-handleFormSubmit(popupAvatarEdit, () => {
+handleFormSubmit(popupAvatarEdit, (event) => {
+  event.submitter.textContent = 'Сохранение...';
+
   setUserAvatar(linkAvatarInput.value)
     .then(res => {
       userPhoto.src = res.avatar;
+
+      closePopup(popupAvatarEdit);
+      disableButton(event.submitter);
     })
     .catch(err => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false);
+      event.submitter.textContent = 'Сохранить';
     })
 });
 
@@ -138,9 +141,6 @@ getUserInfo()
   .catch(err => {
     console.log(err);
   })
-  .finally(() => {
-    renderLoading(false);
-  })
 
 getUserAvatar()
   .then(res => {
@@ -149,12 +149,9 @@ getUserAvatar()
   .catch(err => {
     console.log(err);
   })
-  .finally(() => {
-    renderLoading(false);
-  })
 
 import './styles/index.css';
-import { addGalleryElement, galleryContainer, addDeleteElement } from './components/card';
+import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
 import { getUserInfo, setUserInfo, setCards, getUserAvatar, setUserAvatar } from './components/api';

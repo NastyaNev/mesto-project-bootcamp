@@ -7,8 +7,8 @@ function deleteElement(element) {
   console.log("I've been deleted");
 }
 
-function likeElement(likeButton) {
-  likeButton.classList.toggle('gellary__like-button_active');
+function likeElement(heart) {
+  heart.classList.toggle('gellary__like-button_active');
 
   console.log("I've been liked");
 }
@@ -16,34 +16,36 @@ function likeElement(likeButton) {
 export function addGalleryElement(name, link) {
   const galleryElement = galleryTemplate.cloneNode(true);
 
-  const galaryLink = galleryElement.querySelector('.gallery__photo');
-  const galaryName = galleryElement.querySelector('.gallery__caption');
+  const gallaryLink = galleryElement.querySelector('.gallery__photo');
+  const gallaryName = galleryElement.querySelector('.gallery__caption');
 
-  galaryLink.src = link;
-  galaryName.textContent = name;
-  galaryLink.alt = name;
+  gallaryLink.src = link;
+  gallaryName.textContent = name;
+  gallaryLink.alt = name;
+ 
+  // if (gallaryName.textContent === 'Псков') {
+  //   addDeleteElement(galleryElement);
+  // }
 
-  addDeleteElement(galleryElement);
-
+  const deleteButton = galleryElement.querySelector('.gallery__delete-button');
   const likeButton = galleryElement.querySelector('.gellary__like-button');
   const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
+  deleteButton.addEventListener('click', () => deleteElement(galleryElement));
   likeButton.addEventListener('click', () => likeElement(likeButton));
   openWideButton.addEventListener('click', () => openPhotoPopup(name, link));
 
   return galleryElement;
 }
 
-export function addDeleteElement(element) {
-  if (element.name === 'ftht') {
-  const deleteButton = element.querySelector('.gallery__delete-button');
+// export function addDeleteElement(element) {
+//   const deleteButton = element.querySelector('.gallery__delete-button');
 
-  deleteButton.classList.add('gallery__delete-button_active');
-  deleteButton.addEventListener('click', () => deleteElement(element));
+//   deleteButton.classList.add('gallery__delete-button_active');
+//   deleteButton.addEventListener('click', () => deleteElement(element));
 
-  console.log('Trash');
-  }
-}
+//   console.log('Trash');
+// }
 
 getCards()
   .then(res => {

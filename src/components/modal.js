@@ -9,7 +9,7 @@ export function openPopup(elem) {
   export function closePopup(elem) {
     elem.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
-  
+
     console.log("I've been closed");
   }
 
