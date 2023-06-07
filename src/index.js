@@ -19,7 +19,6 @@ const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
-const submitButton = document.querySelector('.popup__button-save');
 
 export function openPhotoPopup(name, link) {
   openPopup(popupSeePhoto);
