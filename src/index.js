@@ -2,7 +2,7 @@ import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
-import { getUserInfo, setUserInfo, setCards, getUserAvatar, setUserAvatar } from './components/api';
+import { getUserInfo, setUserInfo, setCards, setUserAvatar } from './components/api';
 
 const popupEdit = document.querySelector('.popup__type_edit');
 const popupAdd = document.querySelector('.popup__type_add');
@@ -143,16 +143,8 @@ getUserInfo()
   .then(res => {
     userName.textContent = res.name;
     userDescription.textContent = res.about;
-    userId = res._id;
-    // console.log('userId', userId);
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-getUserAvatar()
-  .then(res => {
     userPhoto.src = res.avatar;
+    userId = res._id;
   })
   .catch(err => {
     console.log(err);

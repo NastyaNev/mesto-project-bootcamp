@@ -32,13 +32,6 @@ export function setUserInfo(name, about) {
         .then(checkResponse)
 }
 
-export function getUserAvatar() {
-    return fetch(`${config.baseUrl}/users/me`, {
-        headers: config.headers
-    })
-        .then(checkResponse)
-}
-
 export function setUserAvatar(avatar) {
     return fetch(`${config.baseUrl}/users/me/avatar`, {
         headers: config.headers,

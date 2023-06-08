@@ -5,6 +5,8 @@ export const galleryContainer = document.querySelector('.gallery');
 const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
 let cardId;
 
+// console.log('userIdCard', userId);
+
 function deleteElement(element) {
   element.remove();
 
@@ -23,21 +25,18 @@ export function addGalleryElement(name, link, ownerId, userId) {
   const gallaryLink = galleryElement.querySelector('.gallery__photo');
   const gallaryName = galleryElement.querySelector('.gallery__caption');
 
+  gallaryLink.src = link;
+  gallaryName.textContent = name;
+  gallaryLink.alt = name;
+  console.log('ownerId', ownerId)
   if (ownerId === userId) {
     addDeleteElement(galleryElement);
     console.log("I've been compared");
   }
-
-  gallaryLink.src = link;
-  gallaryName.textContent = name;
-  gallaryLink.alt = name;
-  // console.log('userId, ownerId', userId, ownerId)
-
-  // const deleteButton = galleryElement.querySelector('.gallery__delete-button');
+  
   const likeButton = galleryElement.querySelector('.gellary__like-button');
   const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
-  // deleteButton.addEventListener('click', () => deleteElement(galleryElement));
   likeButton.addEventListener('click', () => likeElement(likeButton));
   openWideButton.addEventListener('click', () => openPhotoPopup(name, link));
 
@@ -60,11 +59,8 @@ getCards()
       cardId = element._id;
       galleryContainer.append(newGalleryElement);
       // console.log('cardId', cardId);
-      // console.log('userId, ownerId', userId, ownerId)
     });
   })
   .catch(err => {
     console.log(err);
   })
-
-
