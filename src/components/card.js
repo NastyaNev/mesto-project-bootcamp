@@ -5,17 +5,6 @@ export const galleryContainer = document.querySelector('.gallery');
 const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
 let cardId;
 
-// function deleteElement(cardId, element) {
-//   deleteCards(cardId)
-//     .then(res => {
-//       element.remove();
-
-//       console.log("I've been deleted");
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-// }
 function deleteElement(element) {
   element.remove();
 
@@ -28,21 +17,20 @@ function likeElement(heart) {
   console.log("I've been liked");
 }
 
-export function addGalleryElement(name, link, ownerId, cardId) {
+export function addGalleryElement(name, link, ownerId, userId) {
   const galleryElement = galleryTemplate.cloneNode(true);
 
   const gallaryLink = galleryElement.querySelector('.gallery__photo');
   const gallaryName = galleryElement.querySelector('.gallery__caption');
 
+  if (ownerId === userId) {
+    addDeleteElement(galleryElement);
+    console.log("I've been compared");
+  }
+
   gallaryLink.src = link;
   gallaryName.textContent = name;
   gallaryLink.alt = name;
-
-  if (ownerId === userId) {
-    addDeleteElement(galleryElement);
-
-    console.log("I've been compared");
-  }
   // console.log('userId, ownerId', userId, ownerId)
 
   // const deleteButton = galleryElement.querySelector('.gallery__delete-button');
@@ -68,10 +56,11 @@ function addDeleteElement(element) {
 getCards()
   .then(res => {
     res.forEach(function (element) {
-      const newGalleryElement = addGalleryElement(element.name, element.link, element.owner._id);
+      const newGalleryElement = addGalleryElement(element.name, element.link, element.owner._id, userId);
       cardId = element._id;
       galleryContainer.append(newGalleryElement);
-      console.log('cardId', cardId);
+      // console.log('cardId', cardId);
+      // console.log('userId, ownerId', userId, ownerId)
     });
   })
   .catch(err => {
