@@ -1,3 +1,9 @@
+import './styles/index.css';
+import { addGalleryElement, galleryContainer } from './components/card';
+import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
+import { enableValidation, hideError, disableButton } from './components/validation';
+import { getUserInfo, setUserInfo, setCards, getUserAvatar, setUserAvatar } from './components/api';
+
 const popupEdit = document.querySelector('.popup__type_edit');
 const popupAdd = document.querySelector('.popup__type_add');
 const popupAvatarEdit = document.querySelector('.popup__type_edit-avatar');
@@ -19,6 +25,7 @@ const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
+export let userId;
 
 export function openPhotoPopup(name, link) {
   openPopup(popupSeePhoto);
@@ -136,6 +143,8 @@ getUserInfo()
   .then(res => {
     userName.textContent = res.name;
     userDescription.textContent = res.about;
+    userId = res._id;
+    // console.log('userId', userId);
   })
   .catch(err => {
     console.log(err);
@@ -148,9 +157,3 @@ getUserAvatar()
   .catch(err => {
     console.log(err);
   })
-
-import './styles/index.css';
-import { addGalleryElement, galleryContainer } from './components/card';
-import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
-import { enableValidation, hideError, disableButton } from './components/validation';
-import { getUserInfo, setUserInfo, setCards, getUserAvatar, setUserAvatar } from './components/api';

@@ -1,6 +1,21 @@
+import { openPhotoPopup, userId } from '../index';
+import { getCards, deleteCards } from '../components/api';
+
 export const galleryContainer = document.querySelector('.gallery');
 const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
+let cardId;
 
+// function deleteElement(cardId, element) {
+//   deleteCards(cardId)
+//     .then(res => {
+//       element.remove();
+
+//       console.log("I've been deleted");
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+// }
 function deleteElement(element) {
   element.remove();
 
@@ -13,7 +28,7 @@ function likeElement(heart) {
   console.log("I've been liked");
 }
 
-export function addGalleryElement(name, link, card) {
+export function addGalleryElement(name, link, ownerId, cardId) {
   const galleryElement = galleryTemplate.cloneNode(true);
 
   const gallaryLink = galleryElement.querySelector('.gallery__photo');
@@ -22,12 +37,13 @@ export function addGalleryElement(name, link, card) {
   gallaryLink.src = link;
   gallaryName.textContent = name;
   gallaryLink.alt = name;
- 
-  // if (card.owner._id === userId)
-  if (gallaryName.textContent === "dgvs") 
-  {
+
+  if (ownerId === userId) {
     addDeleteElement(galleryElement);
+
+    console.log("I've been compared");
   }
+  // console.log('userId, ownerId', userId, ownerId)
 
   // const deleteButton = galleryElement.querySelector('.gallery__delete-button');
   const likeButton = galleryElement.querySelector('.gellary__like-button');
@@ -52,13 +68,14 @@ function addDeleteElement(element) {
 getCards()
   .then(res => {
     res.forEach(function (element) {
-      const newGalleryElement = addGalleryElement(element.name, element.link);
+      const newGalleryElement = addGalleryElement(element.name, element.link, element.owner._id);
+      cardId = element._id;
       galleryContainer.append(newGalleryElement);
+      console.log('cardId', cardId);
     });
   })
   .catch(err => {
     console.log(err);
   })
 
-import { openPhotoPopup } from '../index';
-import { getCards, deleteCards } from '../components/api';
+

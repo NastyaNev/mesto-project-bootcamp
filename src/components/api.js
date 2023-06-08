@@ -69,28 +69,10 @@ export function setCards(name, link) {
         .then(checkResponse)
 }
 
-// export function deleteCards(id) {
-//     return fetch(`${config.baseUrl}/${id}`, {
-//         headers: config.headers,
-//         method: 'DELETE',
-//         body: JSON.stringify({
-//             userId: _id
-//         })
-//     })
-//         .then(checkResponse);
-// }
-
-// const cards = JSON.stringify(cards);
-// const cardId  =
-
-// export function deleteCards() {
-//     const card = res.json();
-//     return fetch(`${config.baseUrl}/cards/${card._id}`, {
-//         headers: config.headers,
-//         method: 'DELETE',
-//         body: JSON.stringify({
-//             id: _id
-//         })
-//     })
-//         .then(checkResponse)
-// }
+export function deleteCards(id) {
+    return fetch(`${config.baseUrl}/${id}`, {
+        headers: config.headers,
+        method: 'DELETE'
+    })
+        .then(checkResponse);
+}
