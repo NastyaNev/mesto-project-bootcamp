@@ -35,17 +35,17 @@ function addLike(heart, id, likes, number) {
     })
 }
 
-function removeLike(heart, id, likes, number) {
+function removeLike(heart, id, unlikes, number) {
   deleteLike(id)
     .then(res => {
       console.log("res", res.likes);
 
-      likes.cardLikes = res.likes;
-      console.log("likes", likes.cardLikes);
+      unlikes.cardLikes = res.likes;
+      console.log("unlikes", unlikes.cardLikes);
     })
     .then(() => {
       heart.classList.remove('gellary__like-button_active');
-      number.textContent = likes.cardLikes.length;
+      number.textContent = unlikes.cardLikes.length;
       console.log("number", number.textContent);
       console.log("I've been unliked");
     })
@@ -72,7 +72,7 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
 
   console.log("cardLikes", cardLikes);
 
-  const likesArray = { cardLikes: cardLikes };
+  const likesObj = { cardLikes: cardLikes };
 
   likeNumber.textContent = cardLikes.length;
 
@@ -88,11 +88,15 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
   const likeButton = galleryElement.querySelector('.gellary__like-button');
   const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
+  if (cardLikes.some(item => item._id === userId)) {
+    likeButton.classList.add('gellary__like-button_active');
+  }
+
   likeButton.addEventListener('click', () => {
-    if (cardLikes.some(item => item._id === userId)) {
-      removeLike(likeButton, cardId, likesArray, likeNumber);
+    if (likesObj.cardLikes.some(item => item._id === userId)) {
+      removeLike(likeButton, cardId, likesObj, likeNumber);
     } else {
-      addLike(likeButton, cardId, likesArray, likeNumber);
+      addLike(likeButton, cardId, likesObj, likeNumber);
     }
   });
 
