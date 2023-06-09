@@ -93,7 +93,7 @@ handleFormSubmit(popupAdd, (event) => {
 
   setCards(placeInput.value, linkInput.value)
     .then(res => {
-      const newGalleryElement = addGalleryElement(res.name, res.link, res._id);
+      const newGalleryElement = addGalleryElement(res.likes, res.name, res.link, res._id, res.owner._id, userId);
       galleryContainer.prepend(newGalleryElement);
 
       closePopup(popupAdd);

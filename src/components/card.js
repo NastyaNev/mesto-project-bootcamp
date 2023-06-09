@@ -74,6 +74,8 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
 
   const likesArray = { cardLikes: cardLikes };
 
+  likeNumber.textContent = cardLikes.length;
+
   gallaryLink.src = link;
   gallaryName.textContent = name;
   gallaryLink.alt = name;
