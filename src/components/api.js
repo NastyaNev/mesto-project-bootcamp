@@ -63,7 +63,7 @@ export function setCards(name, link) {
 }
 
 export function deleteCards(id) {
-    return fetch(`${config.baseUrl}/${id}`, {
+    return fetch(`${config.baseUrl}/cards/${id}`, {
         headers: config.headers,
         method: 'DELETE'
     })

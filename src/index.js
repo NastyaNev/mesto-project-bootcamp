@@ -37,6 +37,15 @@ export function openPhotoPopup(name, link) {
   console.log("I've been wide-opened");
 }
 
+function handleFormSubmit(popup, onSubmit) {
+  const form = popup.querySelector('.popup__container');
+
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    onSubmit(evt);
+  });
+}
+
 editButton.addEventListener('click', () => {
   openPopup(popupEdit);
   nameInput.value = userName.textContent;
@@ -57,15 +66,6 @@ editAvatarButton.addEventListener('click', () => {
   editAvatarForm.reset();
   hideError(linkAvatarInput, validitySettings);
 });
-
-function handleFormSubmit(popup, onSubmit) {
-  const form = popup.querySelector('.popup__container');
-
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    onSubmit(evt);
-  });
-}
 
 handleFormSubmit(popupEdit, (event) => {
   event.submitter.textContent = 'Сохранение...';
@@ -93,7 +93,7 @@ handleFormSubmit(popupAdd, (event) => {
 
   setCards(placeInput.value, linkInput.value)
     .then(res => {
-      const newGalleryElement = addGalleryElement(res.name, res.link);
+      const newGalleryElement = addGalleryElement(res.name, res.link, res._id);
       galleryContainer.prepend(newGalleryElement);
 
       closePopup(popupAdd);
