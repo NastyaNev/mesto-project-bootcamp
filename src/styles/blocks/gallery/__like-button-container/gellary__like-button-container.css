@@ -1,0 +1,4 @@
+.gellary__like-button-container {
+    display: flex;
+    flex-direction: column;
+}

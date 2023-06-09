@@ -58,10 +58,13 @@
             </button>
             <div class="gallery__caption-row">
                 <h2 class="gallery__caption"></h2>
-                <button class="button" type="button">
-                    <img class="gellary__like-button" src=<%=require('./images/Like.svg')%> alt="Кнопка
-                    &quot;Лайк&quot;">
-                </button>
+                <div class="gellary__like-button-container">
+                    <button class="button" type="button">
+                        <img class="gellary__like-button" src=<%=require('./images/Like.svg')%> alt="Кнопка
+                        &quot;Лайк&quot;">
+                    </button>
+                    <span class="gallery__like-quantity">2</span>
+                </div>
             </div>
         </figure>
     </template>
@@ -80,7 +83,7 @@
                 <span id="error-usName" class="error"></span>
                 <input type="text" id="usInfo" class="popup__input popup__input_value_info" placeholder="О себе"
                     value="" required minlength="2" maxlength="200">
-                <span id="error-usInfo" class="error"></span> 
+                <span id="error-usInfo" class="error"></span>
             </fieldset>
             <button class="button popup__button-save" type="submit">Сохранить</button>
         </form>

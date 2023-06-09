@@ -49,7 +49,9 @@
 @import url(../styles/blocks/gallery/__delete-button/_active/gallery__delete-button_active.css);
 @import url(../styles/blocks/gallery/__caption-row/gallery__caption-row.css);
 @import url(../styles/blocks/gallery/__caption/gallery__caption.css);
+@import url(../styles/blocks/gallery/__like-button-container/gellary__like-button-container.css);
 @import url(../styles/blocks/gallery/__like-button/gellary__like-button.css);
+@import url(../styles/blocks/gallery/__like-quantity/gallery__like-quantity.css);
 @import url(../styles/blocks/gallery/__like-button/_active/gellary__like-button_active.css);
 
 @import url(../styles/blocks/footer/footer.css);
