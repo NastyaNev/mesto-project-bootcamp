@@ -18,16 +18,12 @@ function deleteElement(element, id) {
 function addLike(heart, id, likes, number) {
   setLike(id)
     .then(res => {
-      console.log("res", res.likes);
-
       likes.cardLikes = res.likes;
-
-      console.log("likes", likes.cardLikes);
     })
     .then(() => {
       heart.classList.add('gellary__like-button_active');
       number.textContent = likes.cardLikes.length;
-      console.log("number", number.textContent);
+
       console.log("I've been liked");
     })
     .catch(err => {
@@ -38,15 +34,12 @@ function addLike(heart, id, likes, number) {
 function removeLike(heart, id, unlikes, number) {
   deleteLike(id)
     .then(res => {
-      console.log("res", res.likes);
-
       unlikes.cardLikes = res.likes;
-      console.log("unlikes", unlikes.cardLikes);
     })
     .then(() => {
       heart.classList.remove('gellary__like-button_active');
       number.textContent = unlikes.cardLikes.length;
-      console.log("number", number.textContent);
+
       console.log("I've been unliked");
     })
     .catch(err => {
@@ -69,8 +62,6 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
   const gallaryLink = galleryElement.querySelector('.gallery__photo');
   const gallaryName = galleryElement.querySelector('.gallery__caption');
   const likeNumber = galleryElement.querySelector('.gallery__like-quantity');
-
-  console.log("cardLikes", cardLikes);
 
   const likesObj = { cardLikes: cardLikes };
 

@@ -15,7 +15,6 @@ const addButton = document.querySelector('.profile-header__add-button');
 const editAvatarButton = document.querySelector('.profile-header__avatar-button');
 const addForm = document.querySelector('.popup__container_type_add');
 const editAvatarForm = document.querySelector('.popup__container_type_edit-avatar');
-const editForm = document.querySelector('.popup__container_type_edit');
 const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
 const linkAvatarInput = document.querySelector('.popup__input_value_link-avatar');
@@ -71,21 +70,21 @@ handleFormSubmit(popupEdit, (event) => {
   event.submitter.textContent = 'Сохранение...';
 
   setUserInfo(nameInput.value, jobInput.value)
-  .then(res => {
-    userName.textContent = res.name;
-    userDescription.textContent = res.about;
+    .then(res => {
+      userName.textContent = res.name;
+      userDescription.textContent = res.about;
 
-    closePopup(popupEdit);
-    disableButton(event.submitter);
+      closePopup(popupEdit);
+      disableButton(event.submitter);
 
-    console.log("I've been saved and edited");
-  })
-  .catch(err => {
-    console.log(err);
-  })
-  .finally(() => {
-    event.submitter.textContent = 'Сохранить';
-  })
+      console.log("I've been saved and edited");
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      event.submitter.textContent = 'Сохранить';
+    })
 });
 
 handleFormSubmit(popupAdd, (event) => {
@@ -145,6 +144,8 @@ getUserInfo()
     userDescription.textContent = res.about;
     userPhoto.src = res.avatar;
     userId = res._id;
+
+    console.log("getUserInfoIndexUserId", userId);
   })
   .catch(err => {
     console.log(err);
