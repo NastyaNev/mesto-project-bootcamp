@@ -15,60 +15,43 @@ function deleteElement(element, id) {
     })
 }
 
-function likeElement(heart, id, userId) {
+function addLike(heart, id, likes, number) {
   setLike(id)
     .then(res => {
-      const likesArray = res.likes;
-      console.log('likesArray', likesArray);
+      console.log("res", res.likes);
 
-      likesArray.forEach(element => {
-        if (element._id !== userId) {
-          heart.classList.add('gellary__like-button_active');
-          console.log("I've been liked");
-        } else {
-          unlikeElement(heart, id, userId);
-          console.log("I've been unliked");
-        }
-      })
+      likes.cardLikes = res.likes;
+
+      console.log("likes", likes.cardLikes);
+    })
+    .then(() => {
+      heart.classList.add('gellary__like-button_active');
+      number.textContent = likes.cardLikes.length;
+      console.log("number", number.textContent);
+      console.log("I've been liked");
     })
     .catch(err => {
       console.log(err);
     })
-
-  // console.log("likeId", id);
 }
 
-function unlikeElement(heart, id, userId) {
+function removeLike(heart, id, likes, number) {
   deleteLike(id)
+    .then(res => {
+      console.log("res", res.likes);
+
+      likes.cardLikes = res.likes;
+      console.log("likes", likes.cardLikes);
+    })
     .then(() => {
       heart.classList.remove('gellary__like-button_active');
+      number.textContent = likes.cardLikes.length;
+      console.log("number", number.textContent);
+      console.log("I've been unliked");
     })
-    // .then(res => {
-    //   const likesArray = res.likes;
-    //   console.log('likesArray', likesArray);
-
-    //   likesArray.forEach(element => {
-    //     if (element._id === userId) {
-    //       element.remove();
-    //       // heart.classList.remove('gellary__like-button_active');
-    //       console.log("I've been unliked");
-    //     } else {
-    //       console.log("Haven't been liked yet")
-    //     }
-    //   })
-    // })
     .catch(err => {
       console.log(err);
     })
-
-  // console.log("likeId", id);
-}
-
-function isLiked(element, id, userId) {
-  const likeButton = element.querySelector('.gellary__like-button');
-
-  // likeButton.classList.add('gellary__like-button_active');
-  likeButton.addEventListener('click', () => likeElement(likeButton, id, userId));
 }
 
 function addDeleteElement(element, id) {
@@ -80,11 +63,16 @@ function addDeleteElement(element, id) {
   console.log('Trash added');
 }
 
-export function addGalleryElement(name, link, cardId, ownerId, userId) {
+export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId) {
   const galleryElement = galleryTemplate.cloneNode(true);
 
   const gallaryLink = galleryElement.querySelector('.gallery__photo');
   const gallaryName = galleryElement.querySelector('.gallery__caption');
+  const likeNumber = galleryElement.querySelector('.gallery__like-quantity');
+
+  console.log("cardLikes", cardLikes);
+
+  const likesArray = { cardLikes: cardLikes };
 
   gallaryLink.src = link;
   gallaryName.textContent = name;
@@ -95,13 +83,17 @@ export function addGalleryElement(name, link, cardId, ownerId, userId) {
     console.log("I've been compared");
   }
 
-  isLiked(galleryElement, cardId, userId);
-
-  // const likeButton = galleryElement.querySelector('.gellary__like-button');
+  const likeButton = galleryElement.querySelector('.gellary__like-button');
   const openWideButton = galleryElement.querySelector('.gallery__photo-button');
 
-  // likeButton.addEventListener('click', () => likeElement(likeButton, cardId));
-  // likeButton.addEventListener('click', () => unlikeElement(likeButton, cardId));
+  likeButton.addEventListener('click', () => {
+    if (cardLikes.some(item => item._id === userId)) {
+      removeLike(likeButton, cardId, likesArray, likeNumber);
+    } else {
+      addLike(likeButton, cardId, likesArray, likeNumber);
+    }
+  });
+
   openWideButton.addEventListener('click', () => openPhotoPopup(name, link));
 
   return galleryElement;
@@ -110,7 +102,7 @@ export function addGalleryElement(name, link, cardId, ownerId, userId) {
 getCards()
   .then(res => {
     res.forEach(function (element) {
-      const newGalleryElement = addGalleryElement(element.name, element.link, element._id, element.owner._id, userId);
+      const newGalleryElement = addGalleryElement(element.likes, element.name, element.link, element._id, element.owner._id, userId);
       galleryContainer.append(newGalleryElement);
     });
   })
