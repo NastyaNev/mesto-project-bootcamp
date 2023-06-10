@@ -51,27 +51,20 @@ editButton.addEventListener('click', () => {
   jobInput.value = userDescription.textContent;
   hideError(nameInput, validitySettings);
   hideError(jobInput, validitySettings);
-});
+})
 
 addButton.addEventListener('click', () => {
   openPopup(popupAdd);
   addForm.reset();
   hideError(placeInput, validitySettings);
   hideError(linkInput, validitySettings);
-});
+})
 
 editAvatarButton.addEventListener('click', () => {
   openPopup(popupAvatarEdit);
   editAvatarForm.reset();
   hideError(linkAvatarInput, validitySettings);
-});
-
-// function finaly(event) {
-//   popups.forEach(popup => {
-//   const submitButton = popup.querySelector(".popup__button-save");
-//   event.submitter.textContent = submitButton.textContent;
-//  })
-// }
+})
 
 handleFormSubmit(popupEdit, (event) => {
   event.submitter.textContent = 'Сохранение...';
@@ -92,7 +85,7 @@ handleFormSubmit(popupEdit, (event) => {
     .finally(() => {
       event.submitter.textContent = 'Сохранить';
     })
-});
+})
 
 handleFormSubmit(popupAdd, (event) => {
   event.submitter.textContent = 'Сохранение...';
@@ -100,7 +93,7 @@ handleFormSubmit(popupAdd, (event) => {
   setCards(placeInput.value, linkInput.value)
     .then(res => {
       const newGalleryElement = addGalleryElement(res.likes, res.name, res.link, res._id, res.owner._id, userId);
-      galleryContainer.prepend(newGalleryElement);
+      galleryContainer.append(newGalleryElement);
 
       closePopup(popupAdd);
       disableButton(event.submitter);
@@ -113,7 +106,7 @@ handleFormSubmit(popupAdd, (event) => {
     .finally(() => {
       event.submitter.textContent = 'Создать';
     })
-});
+})
 
 handleFormSubmit(popupAvatarEdit, (event) => {
   event.submitter.textContent = 'Сохранение...';
@@ -131,7 +124,7 @@ handleFormSubmit(popupAvatarEdit, (event) => {
     .finally(() => {
       event.submitter.textContent = 'Сохранить';
     })
-});
+})
 
 popups.forEach(popup => handleClosePopup(popup));
 popups.forEach(popup => handleCloseByBackground(popup));
