@@ -139,14 +139,14 @@ const validitySettings = {
 enableValidation(validitySettings);
 
 Promise.all([getCards(), getUserInfo()])
-  .then(([allCards, userData]) => { 
+  .then(([allCards, userData]) => {
     userName.textContent = userData.name,
-    userDescription.textContent = userData.about,
-    userPhoto.src = userData.avatar,
-    userId = userData._id,
+      userDescription.textContent = userData.about,
+      userPhoto.src = userData.avatar,
+      userId = userData._id,
 
-    allCards.forEach(function (element) {
-      const newGalleryElement = addGalleryElement(element.likes, element.name, element.link, element._id, element.owner._id, userId);
-      galleryContainer.append(newGalleryElement);
-    })
+      allCards.forEach(function (element) {
+        const newGalleryElement = addGalleryElement(element.likes, element.name, element.link, element._id, element.owner._id, userId);
+        galleryContainer.append(newGalleryElement);
+      })
   })

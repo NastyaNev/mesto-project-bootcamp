@@ -85,4 +85,3 @@ export function deleteLike(id) {
     })
         .then(checkResponse);
 }
-                                                                  

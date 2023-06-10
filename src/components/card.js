@@ -70,7 +70,6 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
   gallaryName.textContent = name;
   gallaryLink.alt = name;
 
-console.log("ownerId, userId", ownerId, userId);
   if (ownerId === userId) {
     addDeleteElement(galleryElement, cardId);
     console.log("I've been compared");
