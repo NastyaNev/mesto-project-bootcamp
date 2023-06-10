@@ -1,5 +1,5 @@
-import { openPhotoPopup, userId } from '../index';
-import { getCards, deleteCards, setLike, deleteLike } from '../components/api';
+import { openPhotoPopup } from '../index';
+import { deleteCards, setLike, deleteLike } from '../components/api';
 
 export const galleryContainer = document.querySelector('.gallery');
 const galleryTemplate = document.getElementById('gallery__template').content.querySelector('.gallery__item');
@@ -64,7 +64,6 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
   const likeNumber = galleryElement.querySelector('.gallery__like-quantity');
 
   const likesObj = { cardLikes: cardLikes };
-
   likeNumber.textContent = cardLikes.length;
 
   gallaryLink.src = link;
@@ -95,14 +94,3 @@ export function addGalleryElement(cardLikes, name, link, cardId, ownerId, userId
 
   return galleryElement;
 }
-
-getCards()
-  .then(res => {
-    res.forEach(function (element) {
-      const newGalleryElement = addGalleryElement(element.likes, element.name, element.link, element._id, element.owner._id, userId);
-      galleryContainer.append(newGalleryElement);
-    });
-  })
-  .catch(err => {
-    console.log(err);
-  })

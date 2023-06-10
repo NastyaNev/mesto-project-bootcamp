@@ -22,13 +22,13 @@ function checkValid(input, settings) {
 
 function checkFormValidity(submitButton, form) {
   if (form.checkValidity()) {
-    enableButon(submitButton);
+    enableButton(submitButton);
   } else {
     disableButton(submitButton);
   }
 }
 
-function enableButon(submitButton) {
+function enableButton(submitButton) {
   submitButton.disabled = false;
 }
 

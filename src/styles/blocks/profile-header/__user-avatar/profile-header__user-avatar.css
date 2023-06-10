@@ -3,4 +3,6 @@
     height: 120px;
     width: 120px;
     object-fit: cover;
+    text-align: center;
+    line-height: 115px;
 }

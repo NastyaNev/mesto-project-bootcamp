@@ -2,7 +2,7 @@ import './styles/index.css';
 import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
-import { getUserInfo, setUserInfo, setCards, setUserAvatar } from './components/api';
+import { getUserInfo, setUserInfo, setCards, setUserAvatar, getCards } from './components/api';
 
 const popupEdit = document.querySelector('.popup__type_edit');
 const popupAdd = document.querySelector('.popup__type_add');
@@ -24,7 +24,7 @@ const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
-export let userId;
+let userId;
 
 export function openPhotoPopup(name, link) {
   openPopup(popupSeePhoto);
@@ -65,6 +65,13 @@ editAvatarButton.addEventListener('click', () => {
   editAvatarForm.reset();
   hideError(linkAvatarInput, validitySettings);
 });
+
+// function finaly(event) {
+//   popups.forEach(popup => {
+//   const submitButton = popup.querySelector(".popup__button-save");
+//   event.submitter.textContent = submitButton.textContent;
+//  })
+// }
 
 handleFormSubmit(popupEdit, (event) => {
   event.submitter.textContent = 'Сохранение...';
@@ -138,15 +145,15 @@ const validitySettings = {
 
 enableValidation(validitySettings);
 
-getUserInfo()
-  .then(res => {
-    userName.textContent = res.name;
-    userDescription.textContent = res.about;
-    userPhoto.src = res.avatar;
-    userId = res._id;
+Promise.all([getCards(), getUserInfo()])
+  .then(([allCards, userData]) => { 
+    userName.textContent = userData.name,
+    userDescription.textContent = userData.about,
+    userPhoto.src = userData.avatar,
+    userId = userData._id,
 
-    console.log("getUserInfoIndexUserId", userId);
-  })
-  .catch(err => {
-    console.log(err);
+    allCards.forEach(function (element) {
+      const newGalleryElement = addGalleryElement(element.likes, element.name, element.link, element._id, element.owner._id, userId);
+      galleryContainer.append(newGalleryElement);
+    })
   })

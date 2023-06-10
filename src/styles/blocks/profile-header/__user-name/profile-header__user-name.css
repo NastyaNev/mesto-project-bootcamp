@@ -1,7 +1,7 @@
 .profile-header__user-name {
     font-weight: 500;
     font-size: 42px;
-    line-height: 48px;
+    line-height: 49px;
     margin: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -11,7 +11,7 @@
 @media (max-width: 1279px) {
     .profile-header__user-name {
         font-size: calc((100vw*42)/1280);
-        line-height: calc((100vw*48)/1280);
+        line-height: calc((100vw*49)/1280);
     }
 }
 
