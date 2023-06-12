@@ -1,4 +1,4 @@
-import { openPhotoPopup } from '../index';
+import { openPhotoPopup } from '../components/modal';
 import { deleteCards, setLike, deleteLike } from '../components/api';
 
 export const galleryContainer = document.querySelector('.gallery');

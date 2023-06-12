@@ -18,6 +18,9 @@ export function getUserInfo() {
         headers: config.headers
     })
         .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function setUserInfo(name, about) {
@@ -30,6 +33,9 @@ export function setUserInfo(name, about) {
         })
     })
         .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function setUserAvatar(avatar) {
@@ -41,6 +47,9 @@ export function setUserAvatar(avatar) {
         })
     })
         .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function getCards() {
@@ -48,6 +57,9 @@ export function getCards() {
         headers: config.headers
     })
         .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function setCards(name, link) {
@@ -60,6 +72,9 @@ export function setCards(name, link) {
         })
     })
         .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function deleteCards(id) {
@@ -67,7 +82,10 @@ export function deleteCards(id) {
         headers: config.headers,
         method: 'DELETE'
     })
-        .then(checkResponse);
+        .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function setLike(id) {
@@ -75,7 +93,10 @@ export function setLike(id) {
         headers: config.headers,
         method: 'PUT'
     })
-        .then(checkResponse);
+        .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }
 
 export function deleteLike(id) {
@@ -83,5 +104,8 @@ export function deleteLike(id) {
         headers: config.headers,
         method: 'DELETE'
     })
-        .then(checkResponse);
+        .then(checkResponse)
+        .catch(err => {
+            console.log(err);
+          })
 }

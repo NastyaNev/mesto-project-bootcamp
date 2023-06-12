@@ -3,11 +3,11 @@ import { addGalleryElement, galleryContainer } from './components/card';
 import { handleClosePopup, openPopup, closePopup, handleCloseByBackground } from './components/modal';
 import { enableValidation, hideError, disableButton } from './components/validation';
 import { getUserInfo, setUserInfo, setCards, setUserAvatar, getCards } from './components/api';
+import { handleFormSubmit } from './components/utils';
 
 const popupEdit = document.querySelector('.popup__type_edit');
 const popupAdd = document.querySelector('.popup__type_add');
 const popupAvatarEdit = document.querySelector('.popup__type_edit-avatar');
-const popupSeePhoto = document.querySelector('.popup__type_open-photo');
 const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_info');
 const editButton = document.querySelector('.profile-header__edit-button');
@@ -18,32 +18,11 @@ const editAvatarForm = document.querySelector('.popup__container_type_edit-avata
 const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
 const linkAvatarInput = document.querySelector('.popup__input_value_link-avatar');
-const photoLink = popupSeePhoto.querySelector('.popup__photo');
-const photoName = popupSeePhoto.querySelector('.popup__photo-caption');
 const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
 let userId;
-
-export function openPhotoPopup(name, link) {
-  openPopup(popupSeePhoto);
-
-  photoLink.src = link;
-  photoName.textContent = name;
-  photoLink.alt = name;
-
-  console.log("I've been wide-opened");
-}
-
-function handleFormSubmit(popup, onSubmit) {
-  const form = popup.querySelector('.popup__container');
-
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    onSubmit(evt);
-  });
-}
 
 editButton.addEventListener('click', () => {
   openPopup(popupEdit);
@@ -55,15 +34,21 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupAdd);
+
   addForm.reset();
   hideError(placeInput, validitySettings);
   hideError(linkInput, validitySettings);
+
+  disableButton(popupAdd.querySelector(".popup__button-save"));
 })
 
 editAvatarButton.addEventListener('click', () => {
   openPopup(popupAvatarEdit);
+
   editAvatarForm.reset();
   hideError(linkAvatarInput, validitySettings);
+
+  disableButton(popupAvatarEdit.querySelector(".popup__button-save"));
 })
 
 handleFormSubmit(popupEdit, (event) => {
@@ -93,7 +78,7 @@ handleFormSubmit(popupAdd, (event) => {
   setCards(placeInput.value, linkInput.value)
     .then(res => {
       const newGalleryElement = addGalleryElement(res.likes, res.name, res.link, res._id, res.owner._id, userId);
-      galleryContainer.append(newGalleryElement);
+      galleryContainer.prepend(newGalleryElement);
 
       closePopup(popupAdd);
       disableButton(event.submitter);
@@ -111,9 +96,13 @@ handleFormSubmit(popupAdd, (event) => {
 handleFormSubmit(popupAvatarEdit, (event) => {
   event.submitter.textContent = 'Сохранение...';
 
+  console.dir(popupAvatarEdit);
+
   setUserAvatar(linkAvatarInput.value)
     .then(res => {
       userPhoto.src = res.avatar;
+
+      console.log("editAvatarForm", editAvatarForm);
 
       closePopup(popupAvatarEdit);
       disableButton(event.submitter);
@@ -149,4 +138,7 @@ Promise.all([getCards(), getUserInfo()])
         const newGalleryElement = addGalleryElement(element.likes, element.name, element.link, element._id, element.owner._id, userId);
         galleryContainer.append(newGalleryElement);
       })
+  })
+  .catch(err => {
+    console.log(err);
   })

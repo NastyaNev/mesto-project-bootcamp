@@ -1,3 +1,7 @@
+const popupSeePhoto = document.querySelector('.popup__type_open-photo');
+const photoLink = popupSeePhoto.querySelector('.popup__photo');
+const photoName = popupSeePhoto.querySelector('.popup__photo-caption');
+
 export function openPopup(elem) {
   elem.classList.add('popup_opened');
   elem.classList.remove('preload');
@@ -11,6 +15,16 @@ export function closePopup(elem) {
   document.removeEventListener('keydown', closeByEsc);
 
   console.log("I've been closed");
+}
+
+export function openPhotoPopup(name, link) {
+  openPopup(popupSeePhoto);
+
+  photoLink.src = link;
+  photoName.textContent = name;
+  photoLink.alt = name;
+
+  console.log("I've been wide-opened");
 }
 
 function closeByEsc(evt) {
