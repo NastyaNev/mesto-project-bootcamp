@@ -13,8 +13,8 @@ const jobInput = document.querySelector('.popup__input_value_info');
 const editButton = document.querySelector('.profile-header__edit-button');
 const addButton = document.querySelector('.profile-header__add-button');
 const editAvatarButton = document.querySelector('.profile-header__avatar-button');
-const addForm = document.querySelector('.popup__container_type_add');
-const editAvatarForm = document.querySelector('.popup__container_type_edit-avatar');
+const addForm = document.forms["form2"];
+const editAvatarForm = document.forms["form3"];
 const placeInput = addForm.querySelector('.popup__input_value_place');
 const linkInput = addForm.querySelector('.popup__input_value_link');
 const linkAvatarInput = document.querySelector('.popup__input_value_link-avatar');
@@ -22,6 +22,8 @@ const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
+const submitButtonAdd = popupAdd.querySelector(".popup__button-save");
+const submitButtonAvatarEdit = popupAvatarEdit.querySelector(".popup__button-save");
 let userId;
 
 editButton.addEventListener('click', () => {
@@ -34,21 +36,10 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(popupAdd);
-
-  addForm.reset();
-  hideError(placeInput, validitySettings);
-  hideError(linkInput, validitySettings);
-
-  disableButton(popupAdd.querySelector(".popup__button-save"));
 })
 
 editAvatarButton.addEventListener('click', () => {
   openPopup(popupAvatarEdit);
-
-  editAvatarForm.reset();
-  hideError(linkAvatarInput, validitySettings);
-
-  disableButton(popupAvatarEdit.querySelector(".popup__button-save"));
 })
 
 handleFormSubmit(popupEdit, (event) => {
@@ -81,8 +72,8 @@ handleFormSubmit(popupAdd, (event) => {
       galleryContainer.prepend(newGalleryElement);
 
       closePopup(popupAdd);
-      disableButton(event.submitter);
-
+      disableButton(submitButtonAdd);
+      event.target.reset();
       console.log("I've been saved and added");
     })
     .catch(err => {
@@ -103,9 +94,10 @@ handleFormSubmit(popupAvatarEdit, (event) => {
       userPhoto.src = res.avatar;
 
       console.log("editAvatarForm", editAvatarForm);
-
       closePopup(popupAvatarEdit);
-      disableButton(event.submitter);
+      event.target.reset();
+      
+      disableButton(submitButtonAvatarEdit);
     })
     .catch(err => {
       console.log(err);
