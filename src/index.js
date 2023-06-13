@@ -22,8 +22,6 @@ const userName = document.querySelector('.profile-header__user-name');
 const userDescription = document.querySelector('.profile-header__user-description');
 const userPhoto = document.querySelector('.profile-header__user-avatar');
 const popups = document.querySelectorAll('.popup');
-const submitButtonAdd = popupAdd.querySelector(".popup__button-save");
-const submitButtonAvatarEdit = popupAvatarEdit.querySelector(".popup__button-save");
 let userId;
 
 editButton.addEventListener('click', () => {
@@ -72,7 +70,7 @@ handleFormSubmit(popupAdd, (event) => {
       galleryContainer.prepend(newGalleryElement);
 
       closePopup(popupAdd);
-      disableButton(submitButtonAdd);
+      disableButton(event.submitter);
       event.target.reset();
       console.log("I've been saved and added");
     })
@@ -93,11 +91,10 @@ handleFormSubmit(popupAvatarEdit, (event) => {
     .then(res => {
       userPhoto.src = res.avatar;
 
-      console.log("editAvatarForm", editAvatarForm);
       closePopup(popupAvatarEdit);
       event.target.reset();
       
-      disableButton(submitButtonAvatarEdit);
+      disableButton(event.submitter);
     })
     .catch(err => {
       console.log(err);
