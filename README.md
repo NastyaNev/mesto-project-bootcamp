@@ -10,6 +10,14 @@
  <img src="https://github.com/NastyaNev/mesto-project-bootcamp/assets/129982615/567090a2-3d9d-4b29-9962-8ac4efd159ce" width="80%"/>
 </p>
 
+ ## *Стек*
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.w3.org/TR/html5/" title="HTML5"><img src="https://img.shields.io/badge/HTML-%23000000?logo=html5&logoColor=%23FFFFFF%20&color=%23E34F26" alt="HTML5" height="25px"></a>
+<a href="https://www.w3.org/TR/CSS/" title="CSS3"><img src="https://img.shields.io/badge/CSS-%23000000?logo=css3&logoColor=%23FFFFFF%20&color=%231572B6" alt="CSS3" height="25px"></a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" title="JavaScript"><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-%23000000?logo=javascript&logoColor=%23000000&color=%23F7DF1E" alt="JavaScript" height="25px"></a>
+<a href="https://www.figma.com/" title="Figma"><img src="https://img.shields.io/badge/Figma-%23FFFFFF%20?logo=figma&logoColor=%23FFFFFF%20&color=%23F24E1E" alt="Figma" height="25px"></a>
+<a href="https://getbem.com/" title="Bem"><img src="https://img.shields.io/badge/Bem-%23FFFFFF%20?logo=bem&logoColor=%23FFFFFF%20&color=%23000000" alt="Bem" height="25px"></a>
+
 ***Что было сделано:***
   * Создана разметка сайта в html.
   * Код организован по БЭМ.
